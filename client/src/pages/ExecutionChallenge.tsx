@@ -8,6 +8,8 @@ import {
 import { useLocation, useParams } from 'wouter';
 
 const MissionExecutionScreen = () => {
+  const params = useParams();
+  const [, setLocation] = useLocation();
   const [currentStep, setCurrentStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [isRecording, setIsRecording] = useState(false);
@@ -245,7 +247,10 @@ const MissionExecutionScreen = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white">
         <div className="flex items-center gap-4 mb-4">
-          <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
+          <button 
+            onClick={() => setLocation('/')}
+            className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
+          >
             <ChevronLeft className="w-6 h-6" />
           </button>
           <div className="flex-1">

@@ -418,13 +418,18 @@ const MissionsApp = () => {
 
       {/* Enhanced Mission Card */}
       <div className="px-6 -mt-8 relative z-10">
-        <div 
-          onClick={handleShowDetails}
-          className={`bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 cursor-pointer hover:shadow-3xl ${
-            swipeDirection === 'right' ? 'transform translate-x-full rotate-12 opacity-0' :
-            swipeDirection === 'left' ? 'transform -translate-x-full -rotate-12 opacity-0' :
-            'transform translate-x-0 rotate-0 opacity-100'
-          }`}>
+        {(() => {
+          const mission = missions[currentMission];
+          const IconComponent = mission?.icon || Camera;
+          
+          return (
+            <div 
+              onClick={handleShowDetails}
+              className={`bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 cursor-pointer hover:shadow-3xl ${
+                swipeDirection === 'right' ? 'transform translate-x-full rotate-12 opacity-0' :
+                swipeDirection === 'left' ? 'transform -translate-x-full -rotate-12 opacity-0' :
+                'transform translate-x-0 rotate-0 opacity-100'
+              }`}>
           
           {/* Card Header with Match Score */}
           <div className="relative">
@@ -595,7 +600,9 @@ const MissionsApp = () => {
               </div>
             </div>
           </div>
-        </div>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Modal de Detalhes da Missão */}
@@ -603,7 +610,7 @@ const MissionsApp = () => {
         <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-end justify-center">
           <div className="bg-white w-full max-w-md rounded-t-3xl max-h-[90vh] overflow-hidden">
             <ChallengeDetailsScreen 
-              mission={mission}
+              mission={missions[currentMission]}
               onClose={() => setShowMissionDetails(false)}
               onAccept={handleAcceptFromDetails}
             />

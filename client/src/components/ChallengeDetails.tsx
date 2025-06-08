@@ -26,6 +26,51 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
     estimatedDuration: '30-45 min',
     interestedCount: mission.viewCount || 8,
     categoryColor: mission.categoryColor || 'bg-emerald-500',
+    tags: mission.tags || ['Desafio', 'Oportunidade'],
+    requirements: mission.requirements || ['Disponibilidade', 'Comprometimento'],
+    client: mission.client || {
+      name: 'Cliente',
+      rating: 4.5,
+      reviews: 50,
+      avatar: '👤',
+      verified: true,
+      responseTime: '< 1h',
+      completedMissions: 20,
+      memberSince: '2023',
+      bio: 'Cliente verificado na plataforma.'
+    },
+    rewards: {
+      money: mission.price || 'R$ 40,00',
+      points: 65,
+      badge: 'Conquistador',
+      experience: '+120 XP',
+      rating: 'Até +0.1 na avaliação'
+    },
+    riskFactors: [
+      'Mantenha seus pertences seguros',
+      'Seja pontual com os prazos',
+      'Comunique-se com o cliente'
+    ],
+    checkpoints: [
+      {
+        id: 1,
+        title: 'Iniciar Missão',
+        description: 'Confirme o início da missão',
+        type: 'location',
+        icon: Navigation,
+        required: true,
+        estimatedTime: '5 min',
+        difficulty: 'Fácil',
+        points: 10,
+        instructions: [
+          'Confirme sua disponibilidade',
+          'Leia todas as instruções',
+          'Prepare os materiais necessários'
+        ],
+        tips: ['Organize-se antes de começar'],
+        verification: 'Confirmação manual'
+      }
+    ]
   } : {
     id: 1,
     category: 'Fotografia',

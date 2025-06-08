@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MapPin, Clock, DollarSign, User, Heart, X, Star, Camera, Music, Code, Wrench, Book, Coffee, ChevronLeft, Share2, Bookmark, Navigation, MessageCircle, CheckCircle2, Filter, Search, Bell, TrendingUp, Zap, Award, Users, Eye, ChevronRight } from 'lucide-react';
+import { useLocation } from 'wouter';
+import ChallengeDetailsScreen from '@/components/ChallengeDetails';
 
 const MissionsApp = () => {
   const [currentMission, setCurrentMission] = useState(0);
@@ -12,11 +14,13 @@ const MissionsApp = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [showMissionDetails, setShowMissionDetails] = useState(false);
   const [filters, setFilters] = useState({
     category: 'all',
     distance: 'all',
     price: 'all'
   });
+  const [, setLocation] = useLocation();
   
   const missions = [
     {
@@ -167,10 +171,15 @@ const MissionsApp = () => {
     await new Promise(resolve => setTimeout(resolve, 300));
     
     setAcceptedMissions([...acceptedMissions, mission]);
-    showToastMessage('Missão aceita! Cliente será notificado 🎉', 'success');
+    showToastMessage('Missão aceita! Redirecionando para execução...', 'success');
+    
+    // Navegar para página de execução da missão
+    setTimeout(() => {
+      setLocation(`/mission/${mission.id}/execute`);
+    }, 1000);
+    
     setIsLoading(false);
     setSwipeDirection(null);
-    nextMission();
   };
 
   const handleSkip = () => {
@@ -180,6 +189,15 @@ const MissionsApp = () => {
       setSwipeDirection(null);
       nextMission();
     }, 300);
+  };
+
+  const handleShowDetails = () => {
+    setShowMissionDetails(true);
+  };
+
+  const handleAcceptFromDetails = () => {
+    setShowMissionDetails(false);
+    handleAccept();
   };
 
   const nextMission = () => {

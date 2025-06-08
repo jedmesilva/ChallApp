@@ -8,12 +8,25 @@ import {
   CheckSquare, ArrowRight, Lightbulb, Package, Medal
 } from 'lucide-react';
 
-const ChallengeDetailsScreen = () => {
+interface ChallengeDetailsProps {
+  mission?: any;
+  onClose?: () => void;
+  onAccept?: () => void;
+}
+
+const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetailsProps) => {
   const [activeTab, setActiveTab] = useState('overview');
   const [showFullDescription, setShowFullDescription] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
 
-  const challenge = {
+  // Usar dados da missão passada como prop ou valores padrão
+  const challenge = mission ? {
+    ...mission,
+    fullDescription: mission.description + '. Este é um desafio especial que permite desenvolver suas habilidades enquanto ganha dinheiro.',
+    estimatedDuration: '30-45 min',
+    interestedCount: mission.viewCount || 8,
+    categoryColor: mission.categoryColor || 'bg-emerald-500',
+  } : {
     id: 1,
     category: 'Fotografia',
     categoryColor: 'bg-emerald-500',
@@ -284,7 +297,10 @@ const ChallengeDetailsScreen = () => {
         
         <div className="relative z-10">
           <div className="flex items-center gap-4 mb-4">
-            <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
+            <button 
+              onClick={onClose}
+              className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
+            >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="flex-1">
@@ -561,11 +577,17 @@ const ChallengeDetailsScreen = () => {
       {/* Action Buttons */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <div className="max-w-md mx-auto flex gap-3">
-          <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-colors">
+          <button 
+            onClick={onClose}
+            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-colors"
+          >
             <X className="w-5 h-5" />
-            Pular
+            Fechar
           </button>
-          <button className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg">
+          <button 
+            onClick={onAccept}
+            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg"
+          >
             <Heart className="w-5 h-5" />
             Aceitar Missão
           </button>

@@ -5,6 +5,7 @@ import {
   AlertTriangle, Award, Timer, Navigation, Share2, Flag, Eye,
   FileText, Image, Video, Mic, Send, ChevronRight, Zap, Target
 } from 'lucide-react';
+import { useLocation, useParams } from 'wouter';
 
 const MissionExecutionScreen = () => {
   const [currentStep, setCurrentStep] = useState(0);

@@ -253,7 +253,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
   const CheckpointCard = ({ checkpoint, index }) => {
     const IconComponent = typeIcons[checkpoint.type] || Circle;
-    
+
     return (
       <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
         <div className="flex items-start gap-4">
@@ -265,7 +265,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               {index + 1}
             </div>
           </div>
-          
+
           <div className="flex-1">
             <div className="flex items-start justify-between mb-2">
               <h3 className="font-bold text-gray-800 text-lg">{checkpoint.title}</h3>
@@ -284,9 +284,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 </span>
               </div>
             </div>
-            
+
             <p className="text-gray-600 mb-3">{checkpoint.description}</p>
-            
+
             <div className="flex items-center gap-4 mb-3 text-sm">
               <div className="flex items-center gap-1 text-gray-500">
                 <Timer className="w-4 h-4" />
@@ -297,7 +297,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 {checkpoint.points} pontos
               </div>
             </div>
-            
+
             <div className="space-y-2">
               <div>
                 <h4 className="font-medium text-gray-700 text-sm mb-1">Instruções:</h4>
@@ -315,7 +315,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                   </button>
                 )}
               </div>
-              
+
               {checkpoint.tips && (
                 <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
                   <div className="flex items-start gap-2">
@@ -339,7 +339,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
       {/* Header - Fixed */}
       <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white relative overflow-hidden flex-shrink-0">
         <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
-        
+
         <div className="relative z-10">
           <div className="flex items-center gap-4 mb-4">
             <button 
@@ -440,7 +440,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               <p className="text-gray-600 mb-4">
                 {showFullDescription ? challenge.fullDescription : challenge.description}
               </p>
-              
+
               <button 
                 onClick={() => setShowFullDescription(!showFullDescription)}
                 className="text-emerald-600 font-medium text-sm flex items-center gap-1"
@@ -532,7 +532,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               <p className="text-gray-600 text-sm mb-4">
                 Complete todos os checkpoints obrigatórios para finalizar a missão e receber o pagamento.
               </p>
-              
+
               {/* Summary Stats */}
               <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-xl mb-4">
                 <div className="text-center">
@@ -620,7 +620,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
       </div>
 
       {/* Action Buttons - Fixed */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex-shrink-0">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <div className="max-w-md mx-auto flex gap-3">
           <button 
             onClick={onClose}

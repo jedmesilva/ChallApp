@@ -336,80 +336,82 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
   return (
     <div className="max-w-md mx-auto bg-gray-50 h-screen flex flex-col">
-      {/* Header - Fixed */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white relative overflow-hidden flex-shrink-0">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
+      {/* Scrollable Content - Everything scrolls together */}
+      <div className="flex-1 overflow-y-auto pb-24">
+        {/* Header */}
+        <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
 
-        <div className="relative z-10">
-          <div className="flex items-center gap-4 mb-4">
-            <button 
-              onClick={onClose}
-              className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <div className="flex-1">
-              <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">
-                {challenge.category}
-              </span>
-              <h1 className="text-2xl font-bold mt-1">{challenge.title}</h1>
-            </div>
-            <div className="flex gap-2">
+          <div className="relative z-10">
+            <div className="flex items-center gap-4 mb-4">
               <button 
-                onClick={() => setBookmarked(!bookmarked)}
+                onClick={onClose}
                 className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
               >
-                <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-current' : ''}`} />
+                <ChevronLeft className="w-6 h-6" />
               </button>
-              <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
-                <Share2 className="w-5 h-5" />
-              </button>
+              <div className="flex-1">
+                <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">
+                  {challenge.category}
+                </span>
+                <h1 className="text-2xl font-bold mt-1">{challenge.title}</h1>
+              </div>
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => setBookmarked(!bookmarked)}
+                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
+                >
+                  <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-current' : ''}`} />
+                </button>
+                <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
+                  <Share2 className="w-5 h-5" />
+                </button>
+              </div>
             </div>
-          </div>
 
-          {/* Quick Stats */}
-          <div className="grid grid-cols-3 gap-3 mb-4">
-            <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
-              <Zap className="w-5 h-5 mx-auto mb-1" />
-              <div className="font-bold text-lg">{challenge.matchScore}%</div>
-              <div className="text-xs text-emerald-100">Match</div>
-            </div>
-            <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
-              <Users className="w-5 h-5 mx-auto mb-1" />
-              <div className="font-bold text-lg">{challenge.interestedCount}</div>
-              <div className="text-xs text-emerald-100">Interessados</div>
-            </div>
-            <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
-              <Timer className="w-5 h-5 mx-auto mb-1" />
-              <div className="font-bold text-lg">{challenge.estimatedDuration.split('-')[0]}</div>
-              <div className="text-xs text-emerald-100">Minutos</div>
+            {/* Quick Stats */}
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
+                <Zap className="w-5 h-5 mx-auto mb-1" />
+                <div className="font-bold text-lg">{challenge.matchScore}%</div>
+                <div className="text-xs text-emerald-100">Match</div>
+              </div>
+              <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
+                <Users className="w-5 h-5 mx-auto mb-1" />
+                <div className="font-bold text-lg">{challenge.interestedCount}</div>
+                <div className="text-xs text-emerald-100">Interessados</div>
+              </div>
+              <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
+                <Timer className="w-5 h-5 mx-auto mb-1" />
+                <div className="font-bold text-lg">{challenge.estimatedDuration.split('-')[0]}</div>
+                <div className="text-xs text-emerald-100">Minutos</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Tabs - Fixed */}
-      <div className="px-6 -mt-4 relative z-10 mb-6 flex-shrink-0">
-        <div className="bg-white rounded-2xl p-1 shadow-lg flex">
-          {['overview', 'checkpoints', 'client'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all ${
-                activeTab === tab
-                  ? 'bg-emerald-500 text-white shadow-md'
-                  : 'text-gray-600 hover:text-gray-800'
-              }`}
-            >
-              {tab === 'overview' ? 'Visão Geral' : 
-               tab === 'checkpoints' ? 'Checkpoints' : 'Cliente'}
-            </button>
-          ))}
+        {/* Tabs */}
+        <div className="px-6 -mt-4 relative z-10 mb-6">
+          <div className="bg-white rounded-2xl p-1 shadow-lg flex">
+            {['overview', 'checkpoints', 'client'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all ${
+                  activeTab === tab
+                    ? 'bg-emerald-500 text-white shadow-md'
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                {tab === 'overview' ? 'Visão Geral' : 
+                 tab === 'checkpoints' ? 'Checkpoints' : 'Cliente'}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto px-6 pb-24">
+        {/* Tab Content */}
+        <div className="px-6">
         {activeTab === 'overview' && (
           <div className="space-y-6">
             {/* Main Info Card */}
@@ -617,6 +619,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
             </div>
           </div>
         )}
+        </div>
       </div>
 
       {/* Action Buttons - Fixed */}

@@ -335,9 +335,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white relative overflow-hidden">
+    <div className="max-w-md mx-auto bg-gray-50 h-screen flex flex-col">
+      {/* Header - Fixed */}
+      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white relative overflow-hidden flex-shrink-0">
         <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
         
         <div className="relative z-10">
@@ -388,8 +388,8 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="px-6 -mt-4 relative z-10 mb-6">
+      {/* Tabs - Fixed */}
+      <div className="px-6 -mt-4 relative z-10 mb-6 flex-shrink-0">
         <div className="bg-white rounded-2xl p-1 shadow-lg flex">
           {['overview', 'checkpoints', 'client'].map((tab) => (
             <button
@@ -408,8 +408,8 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
         </div>
       </div>
 
-      {/* Content */}
-      <div className="px-6 pb-8">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto px-6 pb-24">
         {activeTab === 'overview' && (
           <div className="space-y-6">
             {/* Main Info Card */}
@@ -619,8 +619,8 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
         )}
       </div>
 
-      {/* Action Buttons */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+      {/* Action Buttons - Fixed */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 flex-shrink-0">
         <div className="max-w-md mx-auto flex gap-3">
           <button 
             onClick={onClose}
@@ -638,9 +638,6 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
           </button>
         </div>
       </div>
-
-      {/* Bottom Spacing */}
-      <div className="h-20"></div>
     </div>
   );
 };

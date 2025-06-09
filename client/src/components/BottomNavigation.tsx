@@ -16,7 +16,7 @@ export function BottomNavigation({
   onSave,
 }: BottomNavigationProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 glass-card border-t border-white/20 dark:border-white/10 px-6 py-4 safe-area-bottom backdrop-blur-md">
+    <div className="fixed bottom-0 left-0 right-0 glass-card dark:glass-card-dark border-t border-white/20 dark:border-white/10 px-6 py-4 safe-area-bottom">
       <div className="flex items-center justify-center space-x-8 text-sm">
         <Button
           variant="ghost"
@@ -32,7 +32,7 @@ export function BottomNavigation({
           variant="ghost"
           size="sm"
           onClick={onAccept}
-          className="flex flex-col items-center space-y-2 p-4 btn-primary rounded-2xl transition-all duration-200 hover:scale-105 shadow-lg"
+          className="flex flex-col items-center space-y-2 p-4 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl transition-all duration-200 hover:scale-105 shadow-lg"
         >
           <ThumbsUp className="w-7 h-7" />
           <span className="font-semibold">Aceitar</span>
@@ -59,7 +59,7 @@ export function BottomNavigation({
         </Button>
       </div>
       
-      <p className="text-center text-xs text-secondary mt-3 font-medium">
+      <p className="text-center text-xs text-muted-foreground mt-3 font-medium">
         👆 Detalhes • 👉 Aceitar • 👈 Pular • 👇 Salvar
       </p>
     </div>

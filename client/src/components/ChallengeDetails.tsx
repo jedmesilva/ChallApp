@@ -238,9 +238,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
   };
 
   const difficultyColor = {
-    'Fácil': 'text-green-600 bg-green-100',
-    'Médio': 'text-yellow-600 bg-yellow-100',
-    'Difícil': 'text-red-600 bg-red-100'
+    'Fácil': 'text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30',
+    'Médio': 'text-yellow-700 dark:text-yellow-300 bg-yellow-100 dark:bg-yellow-900/30',
+    'Difícil': 'text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30'
   };
 
   const typeIcons = {
@@ -255,27 +255,27 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
     const IconComponent = typeIcons[checkpoint.type] || Circle;
 
     return (
-      <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
         <div className="flex items-start gap-4">
           <div className="relative">
             <div className={`w-12 h-12 ${challenge.categoryColor} rounded-xl flex items-center justify-center shadow-lg`}>
               <IconComponent className="w-6 h-6 text-white" />
             </div>
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-gray-800 text-white rounded-full flex items-center justify-center text-xs font-bold">
+            <div className="absolute -top-1 -right-1 w-6 h-6 bg-gray-800 dark:bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
               {index + 1}
             </div>
           </div>
 
           <div className="flex-1">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-bold text-gray-800 text-lg">{checkpoint.title}</h3>
+              <h3 className="font-bold text-gray-800 dark:text-white text-lg">{checkpoint.title}</h3>
               <div className="flex flex-col items-end gap-1">
                 {checkpoint.required ? (
-                  <span className="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs font-medium">
+                  <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300 px-2 py-1 rounded-full text-xs font-medium">
                     Obrigatório
                   </span>
                 ) : (
-                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">
+                  <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-medium">
                     Opcional
                   </span>
                 )}
@@ -285,44 +285,44 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               </div>
             </div>
 
-            <p className="text-gray-600 mb-3">{checkpoint.description}</p>
+            <p className="text-gray-600 dark:text-gray-300 mb-3 font-medium">{checkpoint.description}</p>
 
             <div className="flex items-center gap-4 mb-3 text-sm">
-              <div className="flex items-center gap-1 text-gray-500">
+              <div className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                 <Timer className="w-4 h-4" />
-                {checkpoint.estimatedTime}
+                <span className="font-medium">{checkpoint.estimatedTime}</span>
               </div>
-              <div className="flex items-center gap-1 text-emerald-600">
+              <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
                 <Award className="w-4 h-4" />
-                {checkpoint.points} pontos
+                <span className="font-medium">{checkpoint.points} pontos</span>
               </div>
             </div>
 
             <div className="space-y-2">
               <div>
-                <h4 className="font-medium text-gray-700 text-sm mb-1">Instruções:</h4>
+                <h4 className="font-medium text-gray-700 dark:text-gray-300 text-sm mb-1">Instruções:</h4>
                 <ul className="space-y-1">
                   {checkpoint.instructions.slice(0, 2).map((instruction, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                      <CheckSquare className="w-3 h-3 text-emerald-500 mt-0.5 flex-shrink-0" />
-                      {instruction}
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
+                      <CheckSquare className="w-3 h-3 text-emerald-500 dark:text-emerald-400 mt-0.5 flex-shrink-0" />
+                      <span className="font-medium">{instruction}</span>
                     </li>
                   ))}
                 </ul>
                 {checkpoint.instructions.length > 2 && (
-                  <button className="text-emerald-600 text-sm font-medium mt-1 flex items-center gap-1">
+                  <button className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mt-1 flex items-center gap-1 hover:text-emerald-700 dark:hover:text-emerald-300">
                     Ver todas as instruções <ChevronRight className="w-3 h-3" />
                   </button>
                 )}
               </div>
 
               {checkpoint.tips && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-2">
+                <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/50 rounded-lg p-2">
                   <div className="flex items-start gap-2">
-                    <Lightbulb className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <Lightbulb className="w-4 h-4 text-yellow-600 dark:text-yellow-400 mt-0.5 flex-shrink-0" />
                     <div>
-                      <h5 className="font-medium text-yellow-800 text-sm">Dicas:</h5>
-                      <p className="text-yellow-700 text-sm">{checkpoint.tips[0]}</p>
+                      <h5 className="font-medium text-yellow-800 dark:text-yellow-300 text-sm">Dicas:</h5>
+                      <p className="text-yellow-700 dark:text-yellow-200 text-sm font-medium">{checkpoint.tips[0]}</p>
                     </div>
                   </div>
                 </div>
@@ -335,11 +335,11 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 h-screen flex flex-col">
+    <div className="max-w-md mx-auto bg-gray-50 dark:bg-gray-900 h-screen flex flex-col" style={{ background: 'var(--gradient-bg)' }}>
       {/* Scrollable Content - Everything scrolls together */}
       <div className="flex-1 overflow-y-auto pb-24">
         {/* Header */}
-        <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white relative overflow-hidden">
+        <div className="gradient-header p-6 pt-12 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
 
           <div className="relative z-10">

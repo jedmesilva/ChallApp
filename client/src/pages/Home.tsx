@@ -572,7 +572,7 @@ const MissionsApp = () => {
               <div className="flex gap-4">
                 <button 
                   onClick={(e) => handleSkip(e)}
-                  className="flex-1 glass-card-light hover:bg-white/10 transition-all duration-200 text-gray-500 dark:text-gray-400 rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border border-white/20 dark:border-white/10 hover:border-white/30 hover:scale-105 transform"
+                  className="flex-1 glass-card-light hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 text-gray-700 dark:text-gray-200 rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:scale-105 transform"
                 >
                   <X className="w-6 h-6" />
                   Pular
@@ -594,7 +594,7 @@ const MissionsApp = () => {
 
               {/* Quick action hint */}
               <div className="text-center mt-4">
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
                   Deslize → para aceitar ou ← para pular
                 </p>
               </div>

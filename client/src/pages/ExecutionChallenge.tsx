@@ -254,9 +254,9 @@ const MissionExecutionScreen = () => {
           <div className="flex items-center gap-4 mb-4">
             <button 
               onClick={() => setLocation('/')}
-              className="p-3 glass-card-light rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105"
+              className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/30"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-6 h-6 text-white" />
             </button>
             <div className="flex-1">
               <h1 className="text-2xl font-bold">Missão em Andamento</h1>
@@ -265,13 +265,13 @@ const MissionExecutionScreen = () => {
             <div className="flex gap-3">
               <button 
                 onClick={() => setShowChat(true)}
-                className="p-3 glass-card-light rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105 relative"
+                className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/30 relative"
               >
-                <MessageCircle className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5 text-white" />
                 <div className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
               </button>
-              <button className="p-3 glass-card-light rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105">
-                <Phone className="w-5 h-5" />
+              <button className="p-3 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105 border border-white/30">
+                <Phone className="w-5 h-5 text-white" />
               </button>
             </div>
           </div>
@@ -282,9 +282,9 @@ const MissionExecutionScreen = () => {
               <span className="text-orange-100 text-sm">Progresso da missão</span>
               <span className="text-white font-semibold">{completedSteps.length}/{mission.steps.length} etapas</span>
             </div>
-            <div className="glass-card-light rounded-full h-3 overflow-hidden">
+            <div className="bg-white/20 rounded-full h-3 overflow-hidden border border-white/30">
               <div 
-                className="bg-white rounded-full h-3 transition-all duration-500"
+                className="bg-white rounded-full h-3 transition-all duration-500 shadow-sm"
                 style={{ width: `${progressPercentage}%` }}
               ></div>
             </div>
@@ -308,16 +308,16 @@ const MissionExecutionScreen = () => {
                 {mission.client.avatar}
               </div>
               <div>
-                <h3 className="font-semibold text-primary">{mission.client.name}</h3>
+                <h3 className="font-semibold text-gray-800 dark:text-white">{mission.client.name}</h3>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  <span className="text-sm text-secondary">{mission.client.rating}</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">{mission.client.rating}</span>
                 </div>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-3xl font-bold gradient-primary bg-clip-text text-transparent">{mission.price}</div>
-              <div className="flex items-center gap-1 text-sm text-secondary">
+              <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">{mission.price}</div>
+              <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-300 font-medium">
                 <MapPin className="w-4 h-4 text-orange-500" />
                 {mission.location}
               </div>
@@ -328,7 +328,7 @@ const MissionExecutionScreen = () => {
 
       {/* Steps Progress */}
       <div className="px-6 mb-6">
-        <h2 className="text-xl font-bold text-primary mb-5">Etapas da Missão</h2>
+        <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-5">Etapas da Missão</h2>
         <div className="space-y-4">
           {mission.steps.map((step, index) => {
             const isCompleted = completedSteps.includes(step.id);
@@ -355,10 +355,10 @@ const MissionExecutionScreen = () => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h3 className={`font-semibold text-lg ${isCurrent ? 'text-orange-600' : isCompleted ? 'text-green-600' : 'text-primary'}`}>
+                    <h3 className={`font-semibold text-lg ${isCurrent ? 'text-orange-600 dark:text-orange-400' : isCompleted ? 'text-green-600 dark:text-green-400' : 'text-gray-800 dark:text-white'}`}>
                       {step.title}
                     </h3>
-                    <p className={`text-sm ${isCurrent ? 'text-orange-500' : isCompleted ? 'text-green-500' : 'text-secondary'}`}>
+                    <p className={`text-sm font-medium ${isCurrent ? 'text-orange-500 dark:text-orange-300' : isCompleted ? 'text-green-500 dark:text-green-300' : 'text-gray-600 dark:text-gray-300'}`}>
                       {step.description}
                     </p>
                   </div>
@@ -368,7 +368,7 @@ const MissionExecutionScreen = () => {
                         Obrigatório
                       </span>
                     )}
-                    <span className="text-xs text-secondary font-medium">{step.estimatedTime}</span>
+                    <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">{step.estimatedTime}</span>
                   </div>
                 </div>
 

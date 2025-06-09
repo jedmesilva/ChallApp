@@ -572,7 +572,7 @@ const MissionsApp = () => {
               <div className="flex gap-4">
                 <button 
                   onClick={(e) => handleSkip(e)}
-                  className="flex-1 glass-card-light hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 text-gray-700 dark:text-gray-200 rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:scale-105 transform"
+                  className="flex-1 btn-header text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold"
                 >
                   <X className="w-6 h-6" />
                   Pular
@@ -581,7 +581,7 @@ const MissionsApp = () => {
                 <button 
                   onClick={(e) => handleAccept(e)}
                   disabled={isLoading}
-                  className="flex-1 gradient-primary hover:opacity-90 transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                  className="flex-1 btn-header text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

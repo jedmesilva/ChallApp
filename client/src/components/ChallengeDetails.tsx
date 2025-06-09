@@ -608,11 +608,11 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               </div>
 
               <div className="flex gap-3">
-                <button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
+                <button className="flex-1 btn-header text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
                   <MessageCircle className="w-5 h-5" />
                   Conversar
                 </button>
-                <button className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl flex items-center justify-center">
+                <button className="px-4 btn-header text-white rounded-xl flex items-center justify-center">
                   <Phone className="w-5 h-5" />
                 </button>
               </div>
@@ -627,14 +627,14 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
         <div className="max-w-md mx-auto flex gap-3">
           <button 
             onClick={onClose}
-            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-colors"
+            className="flex-1 btn-header text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2"
           >
             <X className="w-5 h-5" />
             Fechar
           </button>
           <button 
             onClick={onAccept}
-            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg"
+            className="flex-1 btn-header text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2"
           >
             <Heart className="w-5 h-5" />
             Aceitar Missão

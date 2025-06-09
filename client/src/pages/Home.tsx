@@ -479,9 +479,9 @@ const MissionsApp = () => {
 
               {/* Enhanced Info Grid */}
               <div className="space-y-4 mb-6">
-                <div className="flex items-center gap-4 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
-                  <div className="p-2 gradient-card-secondary rounded-xl">
-                    <MapPin className="w-5 h-5 text-orange-500" />
+                <div className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                  <div className="p-3 bg-orange-100 dark:bg-orange-500/20 rounded-xl">
+                    <MapPin className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div className="flex-1">
                     <span className="text-gray-800 dark:text-white font-semibold">{mission.location}</span>
@@ -491,8 +491,8 @@ const MissionsApp = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
-                    <Clock className="w-5 h-5 text-orange-500" />
+                  <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <Clock className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                     <div>
                       <div className="text-gray-800 dark:text-white font-semibold text-sm">{mission.time}</div>
                       <span className={`text-xs font-medium ${
@@ -503,8 +503,8 @@ const MissionsApp = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
-                    <DollarSign className="w-5 h-5 text-orange-500" />
+                  <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <DollarSign className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                     <div className="text-right">
                       <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">R$ {mission.price.replace('R$ ', '')}</div>
                       <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">{mission.difficulty}</span>
@@ -531,7 +531,7 @@ const MissionsApp = () => {
               )}
 
               {/* Enhanced Client Info */}
-              <div className="glass-card-light rounded-2xl p-4 border border-white/20 dark:border-white/10">
+              <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <div className="w-14 h-14 gradient-primary rounded-full flex items-center justify-center text-2xl text-white">

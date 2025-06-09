@@ -21,7 +21,7 @@ const MissionsApp = () => {
     price: 'all'
   });
   const [, setLocation] = useLocation();
-  
+
   const missions = [
     {
       id: 1,
@@ -161,28 +161,34 @@ const MissionsApp = () => {
     setTimeout(() => setShowToast(false), 3000);
   };
 
-  const handleAccept = async () => {
+  const handleAccept = async (event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation();
+    }
     setIsLoading(true);
     const mission = missions[currentMission];
-    
+
     // Animação de aceite
     setSwipeDirection('right');
-    
+
     await new Promise(resolve => setTimeout(resolve, 300));
-    
+
     setAcceptedMissions([...acceptedMissions, mission]);
     showToastMessage('Missão aceita! Redirecionando para execução...', 'success');
-    
+
     // Navegar para página de execução da missão
     setTimeout(() => {
       setLocation(`/mission/${mission.id}/execute`);
     }, 1000);
-    
+
     setIsLoading(false);
     setSwipeDirection(null);
   };
 
-  const handleSkip = () => {
+  const handleSkip = (event?: React.MouseEvent) => {
+    if (event) {
+      event.stopPropagation();
+    }
     setSwipeDirection('left');
     showToastMessage('Missão pulada', 'info');
     setTimeout(() => {
@@ -252,7 +258,7 @@ const MissionsApp = () => {
       <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl p-6 transition-transform duration-300 ${showFilters ? 'translate-y-0' : 'translate-y-full'}`}>
         <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto mb-6" />
         <h3 className="text-xl font-bold text-gray-800 mb-6">Filtros</h3>
-        
+
         <div className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-3">Categoria</label>
@@ -272,7 +278,7 @@ const MissionsApp = () => {
               ))}
             </div>
           </div>
-          
+
           <div className="flex gap-4">
             <button 
               onClick={() => setShowFilters(false)}
@@ -359,7 +365,7 @@ const MissionsApp = () => {
     <div className="max-w-md mx-auto min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
       <Toast message={toastMessage} show={showToast} />
       <FiltersModal />
-      
+
       {/* Enhanced Header */}
       <div className="gradient-header p-6 pt-12 text-white relative overflow-hidden">
         {/* Background decorations */}
@@ -367,7 +373,7 @@ const MissionsApp = () => {
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white bg-opacity-10 rounded-full translate-y-16 -translate-x-16"></div>
         <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-white bg-opacity-30 rounded-full"></div>
         <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white bg-opacity-50 rounded-full"></div>
-        
+
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -421,93 +427,87 @@ const MissionsApp = () => {
         {(() => {
           const mission = missions[currentMission];
           const IconComponent = mission?.icon || Camera;
-          
+
           return (
             <div 
               onClick={handleShowDetails}
-              className={`bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100 transition-all duration-300 cursor-pointer hover:shadow-3xl ${
+              className={`glass-card rounded-3xl overflow-hidden transition-all duration-300 cursor-pointer hover:shadow-xl ${
                 swipeDirection === 'right' ? 'transform translate-x-full rotate-12 opacity-0' :
                 swipeDirection === 'left' ? 'transform -translate-x-full -rotate-12 opacity-0' :
                 'transform translate-x-0 rotate-0 opacity-100'
               }`}>
-          
+
           {/* Card Header with Match Score */}
           <div className="relative">
             <div className="absolute top-4 right-4 z-10">
-              <div className="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+              <div className="gradient-primary text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg">
                 <Zap className="w-4 h-4" />
                 {mission.matchScore}% match
               </div>
             </div>
-            
+
             <div className="p-6 pb-4">
               <div className="flex items-center gap-3 mb-4">
-                <div className={`p-4 ${mission.categoryColor} rounded-2xl shadow-lg`}>
+                <div className="p-4 gradient-primary rounded-2xl shadow-lg">
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <span className={`px-3 py-1 ${mission.categoryColor} bg-opacity-15 text-gray-700 rounded-full text-sm font-semibold`}>
+                  <span className="px-3 py-1 gradient-card-secondary text-primary rounded-full text-sm font-semibold border border-white/20 dark:border-white/10">
                     {mission.category}
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                    <Eye className="w-4 h-4 text-gray-400" />
-                    <span className="text-gray-500 text-sm">{mission.viewCount} interessados</span>
-                  </div>
+                      <Eye className="w-4 h-4 text-gray-500 dark:text-gray-400" />
+                      <span className="text-gray-500 dark:text-gray-400 text-sm">{mission.viewCount} interessados</span>
+                    </div>
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-gray-800 mb-3 leading-tight">{mission.title}</h2>
-              
+              <h2 className="text-2xl font-bold text-primary mb-3 leading-tight">{mission.title}</h2>
+
               {/* Enhanced Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {mission.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-gradient-to-r from-orange-100 to-red-100 text-orange-700 rounded-xl text-sm font-medium border border-orange-200">
+                  <span key={index} className="px-3 py-1 bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 rounded-xl text-sm font-medium border border-orange-200/50 dark:border-orange-500/30">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <p className="text-gray-600 leading-relaxed mb-6 text-base">
+              <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6 text-base">
                 {mission.description}
               </p>
 
               {/* Enhanced Info Grid */}
               <div className="space-y-4 mb-6">
-                <div className="flex items-center gap-4 p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl border border-orange-100">
-                  <div className="p-2 bg-orange-100 rounded-xl">
-                    <MapPin className="w-5 h-5 text-orange-600" />
+                <div className="flex items-center gap-4 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
+                  <div className="p-2 gradient-card-secondary rounded-xl">
+                    <MapPin className="w-5 h-5 text-orange-500" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-gray-800 font-semibold">{mission.location}</span>
-                    <div className="text-gray-500 text-sm">{mission.distance} de distância</div>
+                    <span className="text-primary font-semibold">{mission.location}</span>
+                    <div className="text-gray-500 dark:text-gray-400 text-sm">{mission.distance} de distância</div>
                   </div>
-                  <Navigation className="w-5 h-5 text-gray-400" />
+                  <Navigation className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-2xl">
-                    <Clock className="w-5 h-5 text-blue-600" />
+                  <div className="flex items-center gap-3 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
+                    <Clock className="w-5 h-5 text-orange-500" />
                     <div>
-                      <div className="text-gray-800 font-semibold text-sm">{mission.time}</div>
+                      <div className="text-primary font-semibold text-sm">{mission.time}</div>
                       <span className={`text-xs font-medium ${
-                        mission.urgency === 'Urgente' ? 'text-red-600' : 'text-gray-500'
+                        mission.urgency === 'Urgente' ? 'text-red-600 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'
                       }`}>
                         {mission.urgency}
                       </span>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl">
-                    <div className="text-orange-600 font-bold text-lg">R$</div>
-                    <div>
-                      <div className="text-xl font-bold text-gray-800">{mission.price.replace('R$ ', '')}</div>
-                      <span className={`text-xs font-medium ${
-                        mission.difficulty === 'Fácil' ? 'text-green-600' :
-                        mission.difficulty === 'Médio' ? 'text-yellow-600' :
-                        'text-red-600'
-                      }`}>
-                        {mission.difficulty}
-                      </span>
+
+                  <div className="flex items-center gap-3 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
+                    <DollarSign className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                    <div className="text-right">
+                      <div className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">R$ {mission.price.replace('R$ ', '')}</div>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{mission.difficulty}</span>
                     </div>
                   </div>
                 </div>
@@ -516,13 +516,13 @@ const MissionsApp = () => {
               {/* Benefits Section */}
               {mission.benefits && (
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-gray-700 mb-2 flex items-center gap-1">
+                  <h4 className="text-sm font-semibold text-primary mb-2 flex items-center gap-1">
                     <Award className="w-4 h-4" />
                     Vantagens desta missão
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {mission.benefits.map((benefit, index) => (
-                      <span key={index} className="px-2 py-1 bg-orange-50 text-orange-700 rounded-lg text-xs font-medium">
+                      <span key={index} className="px-2 py-1 bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 rounded-lg text-xs font-medium border border-orange-200/50 dark:border-orange-500/30">
                         {benefit}
                       </span>
                     ))}
@@ -531,21 +531,21 @@ const MissionsApp = () => {
               )}
 
               {/* Enhanced Client Info */}
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-4 border border-gray-200">
+              <div className="glass-card-light rounded-2xl p-4 border border-white/20 dark:border-white/10">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-14 h-14 bg-gradient-to-br from-orange-200 to-red-200 rounded-full flex items-center justify-center text-2xl">
+                    <div className="w-14 h-14 gradient-primary rounded-full flex items-center justify-center text-2xl text-white">
                       {mission.client.avatar}
                     </div>
                     {mission.client.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center border-2 border-white">
+                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-800">
                         <CheckCircle2 className="w-4 h-4 text-white" />
                       </div>
                     )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-gray-800">{mission.client.name}</p>
+                      <p className="font-bold text-primary">{mission.client.name}</p>
                       {mission.client.verified && (
                         <span className="text-orange-500 text-xs font-medium">Verificado</span>
                       )}
@@ -553,15 +553,15 @@ const MissionsApp = () => {
                     <div className="flex items-center gap-3 text-sm">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-semibold text-gray-700">{mission.client.rating}</span>
-                        <span className="text-gray-500">({mission.client.reviews})</span>
+                        <span className="font-semibold text-primary">{mission.client.rating}</span>
+                        <span className="text-gray-500 dark:text-gray-400">({mission.client.reviews})</span>
                       </div>
-                      <span className="text-gray-400">•</span>
+                      <span className="text-gray-500 dark:text-gray-400">•</span>
                       <span className="text-orange-600 font-medium">Responde {mission.client.responseTime}</span>
                     </div>
                   </div>
-                  <button className="p-2 hover:bg-white rounded-full transition-colors">
-                    <MessageCircle className="w-5 h-5 text-gray-400" />
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <MessageCircle className="w-5 h-5 text-gray-500 dark:text-gray-400" />
                   </button>
                 </div>
               </div>
@@ -571,17 +571,17 @@ const MissionsApp = () => {
             <div className="p-6 pt-0">
               <div className="flex gap-4">
                 <button 
-                  onClick={handleSkip}
-                  className="flex-1 bg-white hover:bg-gray-50 transition-all duration-200 text-gray-700 rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border-2 border-gray-200 hover:border-gray-300 hover:scale-105 transform"
+                  onClick={(e) => handleSkip(e)}
+                  className="flex-1 glass-card-light hover:bg-white/10 transition-all duration-200 text-gray-500 dark:text-gray-400 rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-semibold border border-white/20 dark:border-white/10 hover:border-white/30 hover:scale-105 transform"
                 >
                   <X className="w-6 h-6" />
                   Pular
                 </button>
-                
+
                 <button 
-                  onClick={handleAccept}
+                  onClick={(e) => handleAccept(e)}
                   disabled={isLoading}
-                  className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
+                  className="flex-1 gradient-primary hover:opacity-90 transition-all duration-200 text-white rounded-2xl py-4 flex items-center justify-center gap-2 text-lg font-bold shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95"
                 >
                   {isLoading ? (
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -591,10 +591,10 @@ const MissionsApp = () => {
                   {isLoading ? 'Conectando...' : 'Aceitar Missão'}
                 </button>
               </div>
-              
+
               {/* Quick action hint */}
               <div className="text-center mt-4">
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
                   Deslize → para aceitar ou ← para pular
                 </p>
               </div>

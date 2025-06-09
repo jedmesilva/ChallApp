@@ -132,13 +132,13 @@ const WalletPage = () => {
   ];
 
   const StatCard = ({ icon: Icon, label, value, subtitle, trend, color = 'text-emerald-600' }) => (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+    <div className="bg-card dark:bg-card rounded-2xl p-4 shadow-sm border border-border">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          <div className={`p-2 bg-gray-100 rounded-xl`}>
+          <div className={`p-2 bg-secondary rounded-xl`}>
             <Icon className={`w-5 h-5 ${color}`} />
           </div>
-          <span className="text-gray-600 text-sm font-medium">{label}</span>
+          <span className="text-muted-foreground text-sm font-medium">{label}</span>
         </div>
         {trend && (
           <div className={`flex items-center gap-1 px-2 py-1 rounded-lg ${
@@ -149,11 +149,11 @@ const WalletPage = () => {
           </div>
         )}
       </div>
-      <div className="text-2xl font-bold text-gray-800 mb-1">
+      <div className="text-2xl font-bold text-card-foreground mb-1">
         R$ {value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
       </div>
       {subtitle && (
-        <div className="text-gray-500 text-sm">{subtitle}</div>
+        <div className="text-muted-foreground text-sm">{subtitle}</div>
       )}
     </div>
   );
@@ -174,7 +174,7 @@ const WalletPage = () => {
     const CategoryIcon = getCategoryIcon(transaction.category);
 
     return (
-      <div className="flex items-center gap-4 p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+      <div className="flex items-center gap-4 p-4 bg-card dark:bg-card rounded-2xl shadow-sm border border-border">
         <div className={`p-3 rounded-2xl ${
           transaction.type === 'income' 
             ? 'bg-emerald-100 text-emerald-600' 
@@ -185,7 +185,7 @@ const WalletPage = () => {
         
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
-            <h4 className="font-semibold text-gray-800">{transaction.title}</h4>
+            <h4 className="font-semibold text-card-foreground">{transaction.title}</h4>
             <div className={`font-bold ${
               transaction.type === 'income' ? 'text-emerald-600' : 'text-red-600'
             }`}>
@@ -193,10 +193,10 @@ const WalletPage = () => {
             </div>
           </div>
           
-          <p className="text-gray-600 text-sm mb-1">{transaction.description}</p>
+          <p className="text-muted-foreground text-sm mb-1">{transaction.description}</p>
           
           <div className="flex items-center justify-between">
-            <span className="text-gray-500 text-sm">
+            <span className="text-muted-foreground text-sm">
               {new Date(transaction.date).toLocaleDateString('pt-BR')} às {transaction.time}
             </span>
             {transaction.status === 'pending' && (
@@ -247,25 +247,25 @@ const WalletPage = () => {
   );
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
+    <div className="max-w-md mx-auto bg-background min-h-screen">
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-40 h-40 bg-white bg-opacity-10 rounded-full -translate-y-20 translate-x-20"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white bg-opacity-10 rounded-full translate-y-16 -translate-x-16"></div>
         
         <div className="relative z-10 p-6 pt-12">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-4">
-              <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+              <button className="p-2 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors">
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <h1 className="text-xl font-bold">Minha Carteira</h1>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+              <button className="p-2 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors">
                 <Bell className="w-5 h-5" />
               </button>
-              <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+              <button className="p-2 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors">
                 <Settings className="w-5 h-5" />
               </button>
             </div>
@@ -277,7 +277,7 @@ const WalletPage = () => {
               <span className="text-emerald-100 text-sm">Saldo Total</span>
               <button 
                 onClick={() => setShowBalance(!showBalance)}
-                className="p-1 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors"
+                className="p-1 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors"
               >
                 {showBalance ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
               </button>
@@ -299,7 +299,7 @@ const WalletPage = () => {
             {quickActions.map(action => (
               <button
                 key={action.id}
-                className="bg-white bg-opacity-20 backdrop-blur-sm rounded-2xl p-4 hover:bg-opacity-30 transition-all"
+                className="glass-card dark:glass-card-dark rounded-2xl p-4 hover:bg-white/30 dark:hover:bg-black/30 transition-all"
               >
                 <div className={`w-10 h-10 bg-gradient-to-br ${action.color} rounded-xl flex items-center justify-center mb-2 mx-auto shadow-lg`}>
                   <action.icon className="w-5 h-5 text-white" />
@@ -363,7 +363,7 @@ const WalletPage = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex bg-white rounded-2xl p-2 shadow-sm border border-gray-100 mb-6">
+        <div className="flex bg-card dark:bg-card rounded-2xl p-2 shadow-sm border border-border mb-6">
           {[
             { id: 'transactions', label: 'Transações', icon: Receipt },
             { id: 'analytics', label: 'Análise', icon: TrendingUp },
@@ -374,8 +374,8 @@ const WalletPage = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl transition-all duration-200 ${
                 activeTab === tab.id 
-                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg' 
-                  : 'text-gray-600 hover:bg-gray-50'
+                  ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg' 
+                  : 'text-muted-foreground hover:bg-secondary'
               }`}
             >
               <tab.icon className="w-4 h-4" />
@@ -388,9 +388,9 @@ const WalletPage = () => {
         {activeTab === 'transactions' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-800">Transações Recentes</h3>
-              <button className="p-2 bg-white rounded-xl shadow-sm border border-gray-100">
-                <Filter className="w-5 h-5 text-gray-600" />
+              <h3 className="text-lg font-bold text-foreground">Transações Recentes</h3>
+              <button className="p-2 bg-card dark:bg-card rounded-xl shadow-sm border border-border">
+                <Filter className="w-5 h-5 text-muted-foreground" />
               </button>
             </div>
             <div className="space-y-3">
@@ -404,11 +404,11 @@ const WalletPage = () => {
         {activeTab === 'analytics' && (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-800">Gastos por Categoria</h3>
+              <h3 className="text-lg font-bold text-foreground">Gastos por Categoria</h3>
               <select 
                 value={selectedPeriod}
                 onChange={(e) => setSelectedPeriod(e.target.value)}
-                className="px-3 py-2 bg-white rounded-xl border border-gray-200 text-sm"
+                className="px-3 py-2 bg-card dark:bg-card rounded-xl border border-border text-sm text-foreground"
               >
                 <option value="week">Esta semana</option>
                 <option value="month">Este mês</option>
@@ -418,7 +418,7 @@ const WalletPage = () => {
             
             <div className="space-y-3">
               {categories.map((category, index) => (
-                <div key={index} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                <div key={index} className="bg-card dark:bg-card rounded-2xl p-4 shadow-sm border border-border">
                   <div className="flex items-center gap-4 mb-3">
                     <div className={`p-3 ${category.color} rounded-2xl shadow-lg`}>
                       <category.icon className="w-5 h-5 text-white" />

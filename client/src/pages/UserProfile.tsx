@@ -143,16 +143,16 @@ const UserProfilePage = () => {
   };
 
   const StatCard = ({ icon: Icon, label, value, subtitle, color = 'text-emerald-600' }) => (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+    <div className="bg-card dark:bg-card rounded-2xl p-4 shadow-sm border border-border">
       <div className="flex items-center gap-3 mb-2">
-        <div className={`p-2 bg-gray-100 rounded-xl`}>
+        <div className={`p-2 bg-secondary rounded-xl`}>
           <Icon className={`w-5 h-5 ${color}`} />
         </div>
-        <span className="text-gray-600 text-sm font-medium">{label}</span>
+        <span className="text-muted-foreground text-sm font-medium">{label}</span>
       </div>
-      <div className="text-2xl font-bold text-gray-800 mb-1">{value}</div>
+      <div className="text-2xl font-bold text-card-foreground mb-1">{value}</div>
       {subtitle && (
-        <div className="text-gray-500 text-sm">{subtitle}</div>
+        <div className="text-muted-foreground text-sm">{subtitle}</div>
       )}
     </div>
   );
@@ -243,25 +243,25 @@ const UserProfilePage = () => {
   );
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
+    <div className="max-w-md mx-auto bg-background min-h-screen">
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white relative overflow-hidden">
+      <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-40 h-40 bg-white bg-opacity-10 rounded-full -translate-y-20 translate-x-20"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white bg-opacity-10 rounded-full translate-y-16 -translate-x-16"></div>
         
         <div className="relative z-10 p-6 pt-12">
           <div className="flex items-center gap-4 mb-6">
-            <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+            <button className="p-2 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors">
               <ChevronLeft className="w-6 h-6" />
             </button>
             <h1 className="text-xl font-bold flex-1">Meu Perfil</h1>
             <button 
               onClick={() => setShowShareModal(true)}
-              className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors"
+              className="p-2 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors"
             >
               <Share2 className="w-5 h-5" />
             </button>
-            <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 transition-colors">
+            <button className="p-2 glass-card dark:glass-card-dark rounded-full hover:bg-white/30 dark:hover:bg-black/30 transition-colors">
               <Settings className="w-5 h-5" />
             </button>
           </div>
@@ -292,14 +292,14 @@ const UserProfilePage = () => {
             </div>
             
             {/* Level Progress */}
-            <div className="bg-white bg-opacity-20 rounded-2xl p-4 backdrop-blur-sm">
+            <div className="glass-card dark:glass-card-dark rounded-2xl p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-emerald-100 font-medium">Nível {userProfile.level}</span>
-                <span className="text-emerald-100 text-sm">
+                <span className="text-white font-medium">Nível {userProfile.level}</span>
+                <span className="text-white text-sm">
                   {userProfile.currentXP}/{userProfile.nextLevelXP} XP
                 </span>
               </div>
-              <div className="w-full bg-white bg-opacity-20 rounded-full h-3">
+              <div className="w-full glass-card dark:glass-card-dark rounded-full h-3">
                 <div 
                   className="bg-white rounded-full h-3 transition-all duration-500"
                   style={{ width: `${(userProfile.currentXP / userProfile.nextLevelXP) * 100}%` }}
@@ -312,9 +312,9 @@ const UserProfilePage = () => {
 
       {/* Bio */}
       <div className="p-6 -mt-4 relative z-10">
-        <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 mb-6">
-          <p className="text-gray-700 leading-relaxed mb-3">{userProfile.bio}</p>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
+        <div className="bg-card dark:bg-card rounded-2xl p-5 shadow-sm border border-border mb-6">
+          <p className="text-card-foreground leading-relaxed mb-3">{userProfile.bio}</p>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
               <span>{userProfile.joinDate}</span>
@@ -359,7 +359,7 @@ const UserProfilePage = () => {
         </div>
 
         {/* Tabs */}
-        <div className="flex bg-white rounded-2xl p-2 shadow-sm border border-gray-100 mb-6">
+        <div className="flex bg-card dark:bg-card rounded-2xl p-2 shadow-sm border border-border mb-6">
           {[
             { id: 'achievements', label: 'Conquistas', icon: Award },
             { id: 'categories', label: 'Categorias', icon: Target },
@@ -370,8 +370,8 @@ const UserProfilePage = () => {
               onClick={() => setActiveTab(tab.id)}
               className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl transition-all duration-200 ${
                 activeTab === tab.id 
-                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-lg' 
-                  : 'text-gray-600 hover:bg-gray-50'
+                  ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg' 
+                  : 'text-muted-foreground hover:bg-secondary'
               }`}
             >
               <tab.icon className="w-4 h-4" />
@@ -384,8 +384,8 @@ const UserProfilePage = () => {
         {activeTab === 'achievements' && (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-gray-800">Conquistas</h3>
-              <span className="text-gray-500 text-sm">
+              <h3 className="text-lg font-bold text-foreground">Conquistas</h3>
+              <span className="text-muted-foreground text-sm">
                 {achievements.filter(a => a.unlockedAt).length}/{achievements.length} desbloqueadas
               </span>
             </div>

@@ -132,6 +132,14 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .bg-white-solid {
+    background: rgba(255, 255, 255, 1.0);
+  }
+
+  .dark .bg-white-solid {
+    background: rgba(20, 20, 20, 1.0);
+  }
+
   /* Botões primários */
   .btn-primary {
     background: linear-gradient(to right, hsl(16, 100%, 60%), rgba(0, 0, 0, 0.8));

@@ -157,6 +157,20 @@
     box-shadow: 0 8px 25px rgba(251, 146, 60, 0.3);
   }
 
+  /* Botões do header - mesmo background do cabeçalho */
+  .btn-header {
+    background: var(--gradient-header);
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn-header:hover {
+    background: var(--gradient-header);
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+
   /* Efeitos de swipe */
   .swipe-card {
     transition: transform 0.3s ease, opacity 0.3s ease;

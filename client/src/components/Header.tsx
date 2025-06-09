@@ -35,7 +35,7 @@ export function Header({
             <Button
               variant="ghost"
               size="icon"
-              className="text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200 hover:scale-105"
+              className="btn-header text-white p-2 rounded-full"
               onClick={onOpenFilters}
             >
               <Filter className="w-4 h-4" />
@@ -43,7 +43,7 @@ export function Header({
             <Button
               variant="ghost"
               size="icon"
-              className="text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200 hover:scale-105 relative"
+              className="btn-header text-white p-2 rounded-full relative"
             >
               <Bell className="w-4 h-4" />
               <div className="absolute top-2 right-2 w-2 h-2 bg-red-400 rounded-full"></div>
@@ -51,7 +51,7 @@ export function Header({
             <Button
               variant="ghost"
               size="icon"
-              className="text-white hover:bg-white/20 p-2 rounded-full transition-all duration-200 hover:scale-105"
+              className="btn-header text-white p-2 rounded-full"
             >
               <Heart className="w-4 h-4" />
             </Button>

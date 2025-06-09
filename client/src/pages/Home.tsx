@@ -528,37 +528,38 @@ const MissionsApp = () => {
 
               {/* Enhanced Client Info */}
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
-                <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <div className="w-14 h-14 btn-header rounded-full flex items-center justify-center text-2xl text-white">
+                <div className="flex items-start gap-3">
+                  <div className="relative flex-shrink-0">
+                    <div className="w-12 h-12 btn-header rounded-full flex items-center justify-center text-xl text-white">
                       {mission.client.avatar}
                     </div>
                     {mission.client.verified && (
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-800">
-                        <CheckCircle2 className="w-4 h-4 text-white" />
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-800">
+                        <CheckCircle2 className="w-3 h-3 text-white" />
                       </div>
                     )}
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-gray-800 dark:text-white">{mission.client.name}</p>
-                      {mission.client.verified && (
-                        <span className="text-orange-600 dark:text-orange-400 text-xs font-medium">Verificado</span>
-                      )}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                      <div className="flex items-center gap-2">
+                        <p className="font-bold text-gray-800 dark:text-white text-sm truncate">{mission.client.name}</p>
+                        {mission.client.verified && (
+                          <span className="text-orange-600 dark:text-orange-400 text-xs font-medium flex-shrink-0">Verificado</span>
+                        )}
+                      </div>
+                      <button className="p-1 hover:bg-white/10 rounded-full transition-colors self-start sm:self-center">
+                        <MessageCircle className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                      </button>
                     </div>
-                    <div className="flex items-center gap-3 text-sm">
+                    <div className="flex flex-col gap-1 text-sm">
                       <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
                         <span className="font-semibold text-gray-800 dark:text-white">{mission.client.rating}</span>
                         <span className="text-gray-600 dark:text-gray-300">({mission.client.reviews})</span>
                       </div>
-                      <span className="text-gray-600 dark:text-gray-300">•</span>
-                      <span className="text-orange-600 dark:text-orange-400 font-medium">Responde {mission.client.responseTime}</span>
+                      <span className="text-orange-600 dark:text-orange-400 font-medium text-xs">Responde {mission.client.responseTime}</span>
                     </div>
                   </div>
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                    <MessageCircle className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                  </button>
                 </div>
               </div>
             </div>

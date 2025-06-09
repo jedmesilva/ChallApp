@@ -452,28 +452,28 @@ const MissionsApp = () => {
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
-                  <span className="px-3 py-1 gradient-card-secondary text-primary rounded-full text-sm font-semibold border border-white/20 dark:border-white/10">
+                  <span className="px-3 py-1 gradient-card-secondary text-gray-800 dark:text-white rounded-full text-sm font-semibold border border-white/20 dark:border-white/10">
                     {mission.category}
                   </span>
                   <div className="flex items-center gap-2 mt-1">
-                      <Eye className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                      <span className="text-gray-500 dark:text-gray-400 text-sm">{mission.viewCount} interessados</span>
+                      <Eye className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                      <span className="text-gray-600 dark:text-gray-300 text-sm font-medium">{mission.viewCount} interessados</span>
                     </div>
                 </div>
               </div>
 
-              <h2 className="text-2xl font-bold text-primary mb-3 leading-tight">{mission.title}</h2>
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-3 leading-tight">{mission.title}</h2>
 
               {/* Enhanced Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {mission.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 rounded-xl text-sm font-medium border border-orange-200/50 dark:border-orange-500/30">
+                  <span key={index} className="px-3 py-1 bg-orange-100 text-orange-700 dark:bg-orange-500/30 dark:text-orange-200 rounded-xl text-sm font-medium border border-orange-200 dark:border-orange-500/40">
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <p className="text-gray-500 dark:text-gray-400 leading-relaxed mb-6 text-base">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 text-base font-medium">
                 {mission.description}
               </p>
 
@@ -484,19 +484,19 @@ const MissionsApp = () => {
                     <MapPin className="w-5 h-5 text-orange-500" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-primary font-semibold">{mission.location}</span>
-                    <div className="text-gray-500 dark:text-gray-400 text-sm">{mission.distance} de distância</div>
+                    <span className="text-gray-800 dark:text-white font-semibold">{mission.location}</span>
+                    <div className="text-gray-600 dark:text-gray-300 text-sm font-medium">{mission.distance} de distância</div>
                   </div>
-                  <Navigation className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                  <Navigation className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
                   <div className="flex items-center gap-3 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
                     <Clock className="w-5 h-5 text-orange-500" />
                     <div>
-                      <div className="text-primary font-semibold text-sm">{mission.time}</div>
+                      <div className="text-gray-800 dark:text-white font-semibold text-sm">{mission.time}</div>
                       <span className={`text-xs font-medium ${
-                        mission.urgency === 'Urgente' ? 'text-red-600 dark:text-red-400' : 'text-gray-500 dark:text-gray-400'
+                        mission.urgency === 'Urgente' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-300'
                       }`}>
                         {mission.urgency}
                       </span>
@@ -504,10 +504,10 @@ const MissionsApp = () => {
                   </div>
 
                   <div className="flex items-center gap-3 p-3 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
-                    <DollarSign className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                    <DollarSign className="w-5 h-5 text-orange-500" />
                     <div className="text-right">
-                      <div className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">R$ {mission.price.replace('R$ ', '')}</div>
-                      <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">{mission.difficulty}</span>
+                      <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">R$ {mission.price.replace('R$ ', '')}</div>
+                      <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">{mission.difficulty}</span>
                     </div>
                   </div>
                 </div>
@@ -516,13 +516,13 @@ const MissionsApp = () => {
               {/* Benefits Section */}
               {mission.benefits && (
                 <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-primary mb-2 flex items-center gap-1">
-                    <Award className="w-4 h-4" />
+                  <h4 className="text-sm font-semibold text-gray-800 dark:text-white mb-2 flex items-center gap-1">
+                    <Award className="w-4 h-4 text-orange-500" />
                     Vantagens desta missão
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {mission.benefits.map((benefit, index) => (
-                      <span key={index} className="px-2 py-1 bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 rounded-lg text-xs font-medium border border-orange-200/50 dark:border-orange-500/30">
+                      <span key={index} className="px-2 py-1 bg-orange-100 text-orange-700 dark:bg-orange-500/30 dark:text-orange-200 rounded-lg text-xs font-medium border border-orange-200 dark:border-orange-500/40">
                         {benefit}
                       </span>
                     ))}
@@ -545,23 +545,23 @@ const MissionsApp = () => {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="font-bold text-primary">{mission.client.name}</p>
+                      <p className="font-bold text-gray-800 dark:text-white">{mission.client.name}</p>
                       {mission.client.verified && (
-                        <span className="text-orange-500 text-xs font-medium">Verificado</span>
+                        <span className="text-orange-600 dark:text-orange-400 text-xs font-medium">Verificado</span>
                       )}
                     </div>
                     <div className="flex items-center gap-3 text-sm">
                       <div className="flex items-center gap-1">
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="font-semibold text-primary">{mission.client.rating}</span>
-                        <span className="text-gray-500 dark:text-gray-400">({mission.client.reviews})</span>
+                        <span className="font-semibold text-gray-800 dark:text-white">{mission.client.rating}</span>
+                        <span className="text-gray-600 dark:text-gray-300">({mission.client.reviews})</span>
                       </div>
-                      <span className="text-gray-500 dark:text-gray-400">•</span>
-                      <span className="text-orange-600 font-medium">Responde {mission.client.responseTime}</span>
+                      <span className="text-gray-600 dark:text-gray-300">•</span>
+                      <span className="text-orange-600 dark:text-orange-400 font-medium">Responde {mission.client.responseTime}</span>
                     </div>
                   </div>
                   <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                    <MessageCircle className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                    <MessageCircle className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                   </button>
                 </div>
               </div>

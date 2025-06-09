@@ -5,14 +5,14 @@ import ChallengeDetailsScreen from '@/components/ChallengeDetails';
 
 const MissionsApp = () => {
   const [currentMission, setCurrentMission] = useState(0);
-  const [acceptedMissions, setAcceptedMissions] = useState([]);
+  const [acceptedMissions, setAcceptedMissions] = useState<any[]>([]);
   const [showAccepted, setShowAccepted] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState<any>('');
   const [isLoading, setIsLoading] = useState(false);
   const [cardPosition, setCardPosition] = useState({ x: 0, y: 0, rotation: 0 });
   const [isDragging, setIsDragging] = useState(false);
-  const [swipeDirection, setSwipeDirection] = useState(null);
+  const [swipeDirection, setSwipeDirection] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [showMissionDetails, setShowMissionDetails] = useState(false);
   const [filters, setFilters] = useState({
@@ -155,7 +155,7 @@ const MissionsApp = () => {
     }
   ];
 
-  const showToastMessage = (message, type = 'success') => {
+  const showToastMessage = (message: string, type = 'success') => {
     setToastMessage({ text: message, type });
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
@@ -209,14 +209,14 @@ const MissionsApp = () => {
   const IconComponent = mission.icon;
 
   // Improved Toast Component
-  const Toast = ({ message, show }) => (
+  const Toast = ({ message, show }: { message: any; show: boolean }) => (
     <div className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ${
       show ? 'translate-y-0 opacity-100 scale-100' : '-translate-y-full opacity-0 scale-95'
     }`}>
-      <div className={`px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border backdrop-blur-sm ${
-        message.type === 'success' ? 'bg-orange-50 border-orange-200 text-orange-800' :
-        message.type === 'info' ? 'bg-blue-50 border-blue-200 text-blue-800' :
-        'bg-white border-gray-200 text-gray-800'
+      <div className={`px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 border glass-card ${
+        message.type === 'success' ? 'bg-orange-50/80 border-orange-200/50 text-orange-800' :
+        message.type === 'info' ? 'bg-blue-50/80 border-blue-200/50 text-blue-800' :
+        'glass-card text-primary'
       }`}>
         {message.type === 'success' && <CheckCircle2 className="w-5 h-5 text-orange-500" />}
         {message.type === 'info' && <Eye className="w-5 h-5 text-blue-500" />}
@@ -356,12 +356,12 @@ const MissionsApp = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto bg-gradient-to-br from-orange-50 to-red-50 min-h-screen relative overflow-hidden">
+    <div className="max-w-md mx-auto min-h-screen relative overflow-hidden" style={{ background: 'var(--gradient-bg)' }}>
       <Toast message={toastMessage} show={showToast} />
       <FiltersModal />
       
       {/* Enhanced Header */}
-      <div className="bg-gradient-to-r from-orange-500 via-orange-600 to-red-500 p-6 pt-12 text-white relative overflow-hidden">
+      <div className="gradient-header p-6 pt-12 text-white relative overflow-hidden">
         {/* Background decorations */}
         <div className="absolute top-0 right-0 w-40 h-40 bg-white bg-opacity-10 rounded-full -translate-y-20 translate-x-20"></div>
         <div className="absolute bottom-0 left-0 w-32 h-32 bg-white bg-opacity-10 rounded-full translate-y-16 -translate-x-16"></div>

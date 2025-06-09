@@ -337,7 +337,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
   return (
     <div className="max-w-md mx-auto bg-white-solid h-screen flex flex-col fixed inset-0 z-50">
       {/* Scrollable Content - Everything scrolls together */}
-      <div className="flex-1 overflow-y-auto pb-24">
+      <div className="flex-1 overflow-y-auto pb-32">
         {/* Header */}
         <div className="gradient-header p-6 pt-6 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>

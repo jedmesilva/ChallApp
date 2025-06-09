@@ -7,6 +7,8 @@ import {
   Shield, Briefcase, Calendar, Route, Upload, Info, PlayCircle,
   CheckSquare, ArrowRight, Lightbulb, Package, Medal
 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface ChallengeDetailsProps {
   mission?: any;
@@ -310,9 +312,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                   ))}
                 </ul>
                 {checkpoint.instructions.length > 2 && (
-                  <button className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mt-1 flex items-center gap-1 hover:text-emerald-700 dark:hover:text-emerald-300">
+                  <Button variant="link" className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mt-1 p-0 h-auto hover:text-emerald-700 dark:hover:text-emerald-300">
                     Ver todas as instruções <ChevronRight className="w-3 h-3" />
-                  </button>
+                  </Button>
                 )}
               </div>
 
@@ -344,12 +346,14 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
           <div className="relative z-10">
             <div className="flex items-center gap-4 mb-4">
-              <button 
+              <Button 
                 onClick={onClose}
-                className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
+                variant="ghost"
+                size="icon"
+                className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 text-white hover:text-white"
               >
                 <ChevronLeft className="w-6 h-6" />
-              </button>
+              </Button>
               <div className="flex-1">
                 <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">
                   {challenge.category}
@@ -357,15 +361,21 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 <h1 className="text-2xl font-bold mt-1">{challenge.title}</h1>
               </div>
               <div className="flex gap-2">
-                <button 
+                <Button 
                   onClick={() => setBookmarked(!bookmarked)}
-                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
+                  variant="ghost"
+                  size="icon"
+                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 text-white hover:text-white"
                 >
                   <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-current' : ''}`} />
-                </button>
-                <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
+                </Button>
+                <Button 
+                  variant="ghost"
+                  size="icon"
+                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 text-white hover:text-white"
+                >
                   <Share2 className="w-5 h-5" />
-                </button>
+                </Button>
               </div>
             </div>
 
@@ -392,27 +402,22 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
         {/* Tabs */}
         <div className="px-6 -mt-4 relative z-10 mb-6">
-          <div className="bg-white rounded-2xl p-1 shadow-lg flex">
-            {['overview', 'checkpoints', 'client'].map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all ${
-                  activeTab === tab
-                    ? 'bg-emerald-500 text-white shadow-md'
-                    : 'text-gray-600 hover:text-gray-800'
-                }`}
-              >
-                {tab === 'overview' ? 'Visão Geral' : 
-                 tab === 'checkpoints' ? 'Checkpoints' : 'Cliente'}
-              </button>
-            ))}
-          </div>
-        </div>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-3 bg-white rounded-2xl p-1 shadow-lg">
+              <TabsTrigger value="overview" className="rounded-xl font-medium text-sm data-[state=active]:bg-emerald-500 data-[state=active]:text-white">
+                Visão Geral
+              </TabsTrigger>
+              <TabsTrigger value="checkpoints" className="rounded-xl font-medium text-sm data-[state=active]:bg-emerald-500 data-[state=active]:text-white">
+                Checkpoints
+              </TabsTrigger>
+              <TabsTrigger value="client" className="rounded-xl font-medium text-sm data-[state=active]:bg-emerald-500 data-[state=active]:text-white">
+                Cliente
+              </TabsTrigger>
+            </TabsList>
 
-        {/* Tab Content */}
-        <div className="px-6">
-        {activeTab === 'overview' && (
+            {/* Tab Content */}
+            <div className="mt-6">
+              <TabsContent value="overview" className="space-y-6 mt-0">{
           <div className="space-y-6">
             {/* Main Info Card */}
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
@@ -443,13 +448,14 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 {showFullDescription ? challenge.fullDescription : challenge.description}
               </p>
 
-              <button 
+              <Button 
                 onClick={() => setShowFullDescription(!showFullDescription)}
-                className="text-emerald-600 font-medium text-sm flex items-center gap-1"
+                variant="link"
+                className="text-emerald-600 font-medium text-sm p-0 h-auto"
               >
                 {showFullDescription ? 'Ver menos' : 'Ver descrição completa'}
                 <ChevronRight className={`w-4 h-4 transition-transform ${showFullDescription ? 'rotate-90' : ''}`} />
-              </button>
+              </Button>
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {challenge.tags.map((tag, index) => (
@@ -517,9 +523,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               </ul>
             </div>
           </div>
-        )}
+              </TabsContent>
 
-        {activeTab === 'checkpoints' && (
+              <TabsContent value="checkpoints" className="space-y-6 mt-0">{
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
@@ -556,9 +562,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               <CheckpointCard key={checkpoint.id} checkpoint={checkpoint} index={index} />
             ))}
           </div>
-        )}
+              </TabsContent>
 
-        {activeTab === 'client' && (
+              <TabsContent value="client" className="space-y-6 mt-0">{
           <div className="space-y-6">
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
               <div className="flex items-center gap-4 mb-4">
@@ -608,37 +614,39 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               </div>
 
               <div className="flex gap-3">
-                <button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
+                <Button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold">
                   <MessageCircle className="w-5 h-5" />
                   Conversar
-                </button>
-                <button className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl flex items-center justify-center">
+                </Button>
+                <Button variant="secondary" size="icon" className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl">
                   <Phone className="w-5 h-5" />
-                </button>
+                </Button>
               </div>
             </div>
-          </div>
-        )}
+              </TabsContent>
+            </div>
+          </Tabs>
         </div>
       </div>
 
       {/* Action Buttons - Fixed */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <div className="max-w-md mx-auto flex gap-3">
-          <button 
+          <Button 
             onClick={onClose}
-            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-colors"
+            variant="secondary"
+            className="flex-1 py-4 rounded-2xl font-semibold"
           >
             <X className="w-5 h-5" />
             Fechar
-          </button>
-          <button 
+          </Button>
+          <Button 
             onClick={onAccept}
-            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg"
+            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold shadow-lg"
           >
             <Heart className="w-5 h-5" />
             Aceitar Missão
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -258,10 +258,10 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
       <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 border border-gray-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow">
         <div className="flex items-start gap-4">
           <div className="relative">
-            <div className={`w-12 h-12 ${challenge.categoryColor} rounded-xl flex items-center justify-center shadow-lg`}>
+            <div className="w-12 h-12 btn-header rounded-xl flex items-center justify-center shadow-lg">
               <IconComponent className="w-6 h-6 text-white" />
             </div>
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-gray-800 dark:bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold">
+            <div className="absolute -top-1 -right-1 w-6 h-6 bg-orange-primary text-white rounded-full flex items-center justify-center text-xs font-bold">
               {index + 1}
             </div>
           </div>
@@ -374,17 +374,17 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
               <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
                 <Zap className="w-5 h-5 mx-auto mb-1" />
                 <div className="font-bold text-lg">{challenge.matchScore}%</div>
-                <div className="text-xs text-emerald-100">Match</div>
+                <div className="text-xs text-white/80">Match</div>
               </div>
               <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
                 <Users className="w-5 h-5 mx-auto mb-1" />
                 <div className="font-bold text-lg">{challenge.interestedCount}</div>
-                <div className="text-xs text-emerald-100">Interessados</div>
+                <div className="text-xs text-white/80">Interessados</div>
               </div>
               <div className="bg-white bg-opacity-20 rounded-xl p-3 text-center">
                 <Timer className="w-5 h-5 mx-auto mb-1" />
                 <div className="font-bold text-lg">{challenge.estimatedDuration.split('-')[0]}</div>
-                <div className="text-xs text-emerald-100">Minutos</div>
+                <div className="text-xs text-white/80">Minutos</div>
               </div>
             </div>
           </div>
@@ -453,7 +453,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {challenge.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-orange-light dark:bg-orange-primary/20 text-orange-primary dark:text-orange-primary rounded-full text-sm">
+                  <span key={index} className="px-3 py-1 bg-orange-primary/10 dark:bg-orange-primary/20 text-orange-primary border border-orange-primary/30 rounded-full text-sm font-medium">
                     {tag}
                   </span>
                 ))}

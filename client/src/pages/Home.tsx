@@ -491,24 +491,20 @@ const MissionsApp = () => {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
-                    <Clock className="w-5 h-5 text-orange-600 dark:text-orange-400" />
-                    <div>
-                      <div className="text-gray-800 dark:text-white font-semibold text-sm">{mission.time}</div>
-                      <span className={`text-xs font-medium ${
-                        mission.urgency === 'Urgente' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-300'
-                      }`}>
-                        {mission.urgency}
-                      </span>
-                    </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <Clock className="w-6 h-6 text-orange-600 dark:text-orange-400 mb-2" />
+                    <div className="text-gray-800 dark:text-white font-semibold text-sm">{mission.time}</div>
+                    <span className={`text-xs font-medium ${
+                      mission.urgency === 'Urgente' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-300'
+                    }`}>
+                      {mission.urgency}
+                    </span>
                   </div>
 
-                  <div className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
-                    <DollarSign className="w-5 h-5 text-orange-600 dark:text-orange-400" />
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">R$ {mission.price.replace('R$ ', '')}</div>
-                      <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">{mission.difficulty}</span>
-                    </div>
+                  <div className="flex flex-col items-center text-center p-4 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm">
+                    <div className="text-orange-600 dark:text-orange-400 font-bold text-sm mb-2">R$</div>
+                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">{mission.price.replace('R$ ', '')}</div>
+                    <span className="text-xs text-gray-600 dark:text-gray-300 font-medium">{mission.difficulty}</span>
                   </div>
                 </div>
               </div>

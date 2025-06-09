@@ -288,7 +288,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
             <p className="text-gray-600 dark:text-gray-300 mb-3 font-medium">{checkpoint.description}</p>
 
             <div className="flex items-center gap-4 mb-3 text-sm">
-              <div className="flex items-center gap-1 text-secondary dark:text-gray-300">
+              <div className="flex items-center gap-1 text-gray-600 dark:text-gray-300">
                 <Timer className="w-4 h-4" />
                 <span className="font-medium">{checkpoint.estimatedTime}</span>
               </div>
@@ -300,10 +300,10 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
             <div className="space-y-2">
               <div>
-                <h4 className="font-medium text-secondary dark:text-gray-300 text-sm mb-1">Instruções:</h4>
+                <h4 className="font-medium text-gray-700 dark:text-gray-300 text-sm mb-1">Instruções:</h4>
                 <ul className="space-y-1">
                   {checkpoint.instructions.slice(0, 2).map((instruction, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-secondary dark:text-gray-300">
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300">
                       <CheckSquare className="w-3 h-3 text-orange-primary mt-0.5 flex-shrink-0" />
                       <span className="font-medium">{instruction}</span>
                     </li>
@@ -422,8 +422,8 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                     <challenge.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h2 className="font-bold text-primary dark:text-white">{challenge.title}</h2>
-                    <div className="flex items-center gap-2 text-sm text-secondary dark:text-gray-400">
+                    <h2 className="font-bold text-gray-800 dark:text-white">{challenge.title}</h2>
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                       <MapPin className="w-4 h-4" />
                       {challenge.location} • {challenge.distance}
                     </div>
@@ -439,7 +439,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 </div>
               </div>
 
-              <p className="text-secondary dark:text-gray-300 mb-4">
+              <p className="text-gray-600 dark:text-gray-300 mb-4">
                 {showFullDescription ? challenge.fullDescription : challenge.description}
               </p>
 
@@ -462,13 +462,13 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
             {/* Requirements */}
             <div className="glass-card-light rounded-2xl p-5 shadow-sm">
-              <h3 className="font-bold text-primary dark:text-white mb-3 flex items-center gap-2">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <Package className="w-5 h-5 text-orange-primary" />
                 Requisitos
               </h3>
               <ul className="space-y-2">
                 {challenge.requirements.map((req, index) => (
-                  <li key={index} className="flex items-center gap-3 text-secondary dark:text-gray-300">
+                  <li key={index} className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                     <CheckCircle2 className="w-4 h-4 text-orange-primary flex-shrink-0" />
                     {req}
                   </li>
@@ -478,7 +478,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
             {/* Rewards */}
             <div className="gradient-card-secondary border border-orange-primary/20 dark:border-orange-primary/30 rounded-2xl p-5">
-              <h3 className="font-bold text-primary dark:text-white mb-3 flex items-center gap-2">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <Medal className="w-5 h-5 text-orange-primary" />
                 Recompensas
               </h3>
@@ -486,16 +486,16 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 <div className="glass-card-light rounded-lg p-3 text-center">
                   <DollarSign className="w-5 h-5 text-orange-primary mx-auto mb-1" />
                   <div className="font-bold text-orange-primary">{challenge.rewards.money}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Pagamento</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Pagamento</div>
                 </div>
                 <div className="glass-card-light rounded-lg p-3 text-center">
                   <Award className="w-5 h-5 text-orange-primary mx-auto mb-1" />
                   <div className="font-bold text-orange-primary">{challenge.rewards.points}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Pontos</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Pontos</div>
                 </div>
               </div>
               <div className="mt-3 p-3 glass-card-light rounded-lg">
-                <p className="text-sm text-secondary dark:text-gray-300">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   <strong>Bônus:</strong> {challenge.rewards.badge} • {challenge.rewards.experience}
                 </p>
               </div>
@@ -503,7 +503,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
             {/* Risk Factors */}
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-700/50 rounded-2xl p-5">
-              <h3 className="font-bold text-primary dark:text-white mb-3 flex items-center gap-2">
+              <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <AlertTriangle className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
                 Pontos de Atenção
               </h3>
@@ -523,7 +523,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
           <div className="space-y-6">
             <div className="glass-card-light rounded-2xl p-5 shadow-sm">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-primary dark:text-white flex items-center gap-2">
+                <h3 className="font-bold text-gray-800 dark:text-white flex items-center gap-2">
                   <Target className="w-5 h-5 text-orange-primary" />
                   Checkpoints da Missão
                 </h3>
@@ -531,23 +531,23 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                   {challenge.checkpoints.filter(c => c.required).length} obrigatórios
                 </span>
               </div>
-              <p className="text-secondary dark:text-gray-300 text-sm mb-4">
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
                 Complete todos os checkpoints obrigatórios para finalizar a missão e receber o pagamento.
               </p>
 
               {/* Summary Stats */}
               <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl mb-4">
                 <div className="text-center">
-                  <div className="font-bold text-primary dark:text-white">{challenge.checkpoints.length}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Total</div>
+                  <div className="font-bold text-gray-800 dark:text-white">{challenge.checkpoints.length}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Total</div>
                 </div>
                 <div className="text-center">
                   <div className="font-bold text-red-600 dark:text-red-400">{challenge.checkpoints.filter(c => c.required).length}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Obrigatórios</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Obrigatórios</div>
                 </div>
                 <div className="text-center">
                   <div className="font-bold text-orange-primary">{challenge.checkpoints.reduce((sum, c) => sum + c.points, 0)}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Pontos</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Pontos</div>
                 </div>
               </div>
             </div>
@@ -574,7 +574,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-primary dark:text-white text-lg">{challenge.client.name}</h3>
+                    <h3 className="font-bold text-gray-800 dark:text-white text-lg">{challenge.client.name}</h3>
                     {challenge.client.verified && (
                       <Shield className="w-5 h-5 text-orange-primary" />
                     )}
@@ -582,8 +582,8 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                   <div className="flex items-center gap-3 text-sm mb-2">
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold text-primary dark:text-white">{challenge.client.rating}</span>
-                      <span className="text-secondary dark:text-gray-400">({challenge.client.reviews} avaliações)</span>
+                      <span className="font-semibold text-gray-800 dark:text-white">{challenge.client.rating}</span>
+                      <span className="text-gray-600 dark:text-gray-400">({challenge.client.reviews} avaliações)</span>
                     </div>
                   </div>
                   <p className="text-orange-primary font-medium text-sm">
@@ -592,18 +592,18 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 </div>
               </div>
 
-              <p className="text-secondary dark:text-gray-300 mb-4">{challenge.client.bio}</p>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">{challenge.client.bio}</p>
 
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center">
                   <Briefcase className="w-5 h-5 text-orange-primary mx-auto mb-1" />
-                  <div className="font-semibold text-primary dark:text-white">{challenge.client.completedMissions}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Missões publicadas</div>
+                  <div className="font-semibold text-gray-800 dark:text-white">{challenge.client.completedMissions}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Missões publicadas</div>
                 </div>
                 <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 text-center">
                   <Calendar className="w-5 h-5 text-orange-primary mx-auto mb-1" />
-                  <div className="font-semibold text-primary dark:text-white">{challenge.client.memberSince}</div>
-                  <div className="text-xs text-secondary dark:text-gray-400">Membro desde</div>
+                  <div className="font-semibold text-gray-800 dark:text-white">{challenge.client.memberSince}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">Membro desde</div>
                 </div>
               </div>
 

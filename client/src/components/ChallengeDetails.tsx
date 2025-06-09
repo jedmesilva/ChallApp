@@ -7,8 +7,6 @@ import {
   Shield, Briefcase, Calendar, Route, Upload, Info, PlayCircle,
   CheckSquare, ArrowRight, Lightbulb, Package, Medal
 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 interface ChallengeDetailsProps {
   mission?: any;
@@ -312,9 +310,9 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                   ))}
                 </ul>
                 {checkpoint.instructions.length > 2 && (
-                  <Button variant="link" className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mt-1 p-0 h-auto hover:text-emerald-700 dark:hover:text-emerald-300">
+                  <button className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mt-1 flex items-center gap-1 hover:text-emerald-700 dark:hover:text-emerald-300">
                     Ver todas as instruções <ChevronRight className="w-3 h-3" />
-                  </Button>
+                  </button>
                 )}
               </div>
 
@@ -346,14 +344,12 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
           <div className="relative z-10">
             <div className="flex items-center gap-4 mb-4">
-              <Button 
+              <button 
                 onClick={onClose}
-                variant="ghost"
-                size="icon"
-                className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 text-white hover:text-white"
+                className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
               >
                 <ChevronLeft className="w-6 h-6" />
-              </Button>
+              </button>
               <div className="flex-1">
                 <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">
                   {challenge.category}
@@ -361,21 +357,15 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 <h1 className="text-2xl font-bold mt-1">{challenge.title}</h1>
               </div>
               <div className="flex gap-2">
-                <Button 
+                <button 
                   onClick={() => setBookmarked(!bookmarked)}
-                  variant="ghost"
-                  size="icon"
-                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 text-white hover:text-white"
+                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
                 >
                   <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-current' : ''}`} />
-                </Button>
-                <Button 
-                  variant="ghost"
-                  size="icon"
-                  className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 text-white hover:text-white"
-                >
+                </button>
+                <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
                   <Share2 className="w-5 h-5" />
-                </Button>
+                </button>
               </div>
             </div>
 
@@ -402,252 +392,253 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
         {/* Tabs */}
         <div className="px-6 -mt-4 relative z-10 mb-6">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 bg-white rounded-2xl p-1 shadow-lg">
-              <TabsTrigger value="overview" className="rounded-xl font-medium text-sm data-[state=active]:bg-emerald-500 data-[state=active]:text-white">
-                Visão Geral
-              </TabsTrigger>
-              <TabsTrigger value="checkpoints" className="rounded-xl font-medium text-sm data-[state=active]:bg-emerald-500 data-[state=active]:text-white">
-                Checkpoints
-              </TabsTrigger>
-              <TabsTrigger value="client" className="rounded-xl font-medium text-sm data-[state=active]:bg-emerald-500 data-[state=active]:text-white">
-                Cliente
-              </TabsTrigger>
-            </TabsList>
+          <div className="bg-white rounded-2xl p-1 shadow-lg flex">
+            {['overview', 'checkpoints', 'client'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all ${
+                  activeTab === tab
+                    ? 'bg-emerald-500 text-white shadow-md'
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                {tab === 'overview' ? 'Visão Geral' : 
+                 tab === 'checkpoints' ? 'Checkpoints' : 'Cliente'}
+              </button>
+            ))}
+          </div>
+        </div>
 
-            {/* Tab Content */}
-            <div className="mt-6">
-              <TabsContent value="overview" className="space-y-6 mt-0">
-              <div className="space-y-6">
-                {/* Main Info Card */}
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-3 ${challenge.categoryColor} rounded-xl`}>
-                        <challenge.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h2 className="font-bold text-gray-800">{challenge.title}</h2>
-                        <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <MapPin className="w-4 h-4" />
-                          {challenge.location} • {challenge.distance}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-emerald-600">{challenge.price}</div>
-                      <span className={`text-sm px-2 py-1 rounded-full ${
-                        challenge.urgency === 'Urgente' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
-                      }`}>
-                        {challenge.urgency}
-                      </span>
-                    </div>
+        {/* Tab Content */}
+        <div className="px-6">
+        {activeTab === 'overview' && (
+          <div className="space-y-6">
+            {/* Main Info Card */}
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-3">
+                  <div className={`p-3 ${challenge.categoryColor} rounded-xl`}>
+                    <challenge.icon className="w-6 h-6 text-white" />
                   </div>
-
-                  <p className="text-gray-600 mb-4">
-                    {showFullDescription ? challenge.fullDescription : challenge.description}
-                  </p>
-
-                  <Button 
-                    onClick={() => setShowFullDescription(!showFullDescription)}
-                    variant="link"
-                    className="text-emerald-600 font-medium text-sm p-0 h-auto"
-                  >
-                    {showFullDescription ? 'Ver menos' : 'Ver descrição completa'}
-                    <ChevronRight className={`w-4 h-4 transition-transform ${showFullDescription ? 'rotate-90' : ''}`} />
-                  </Button>
-
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {challenge.tags.map((tag, index) => (
-                      <span key={index} className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-sm">
-                        {tag}
-                      </span>
-                    ))}
+                  <div>
+                    <h2 className="font-bold text-gray-800">{challenge.title}</h2>
+                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                      <MapPin className="w-4 h-4" />
+                      {challenge.location} • {challenge.distance}
+                    </div>
                   </div>
                 </div>
-
-                {/* Requirements */}
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                    <Package className="w-5 h-5 text-gray-600" />
-                    Requisitos
-                  </h3>
-                  <ul className="space-y-2">
-                    {challenge.requirements.map((req, index) => (
-                      <li key={index} className="flex items-center gap-3 text-gray-600">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                        {req}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Rewards */}
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-5">
-                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                    <Medal className="w-5 h-5 text-emerald-600" />
-                    Recompensas
-                  </h3>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white rounded-lg p-3 text-center">
-                      <DollarSign className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
-                      <div className="font-bold text-emerald-600">{challenge.rewards.money}</div>
-                      <div className="text-xs text-gray-500">Pagamento</div>
-                    </div>
-                    <div className="bg-white rounded-lg p-3 text-center">
-                      <Award className="w-5 h-5 text-blue-600 mx-auto mb-1" />
-                      <div className="font-bold text-blue-600">{challenge.rewards.points}</div>
-                      <div className="text-xs text-gray-500">Pontos</div>
-                    </div>
-                  </div>
-                  <div className="mt-3 p-3 bg-white rounded-lg">
-                    <p className="text-sm text-gray-600">
-                      <strong>Bônus:</strong> {challenge.rewards.badge} • {challenge.rewards.experience}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Risk Factors */}
-                <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
-                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                    <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                    Pontos de Atenção
-                  </h3>
-                  <ul className="space-y-2">
-                    {challenge.riskFactors.map((risk, index) => (
-                      <li key={index} className="flex items-start gap-3 text-yellow-800">
-                        <Info className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                        {risk}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="text-right">
+                  <div className="text-2xl font-bold text-emerald-600">{challenge.price}</div>
+                  <span className={`text-sm px-2 py-1 rounded-full ${
+                    challenge.urgency === 'Urgente' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    {challenge.urgency}
+                  </span>
                 </div>
               </div>
-            </TabsContent>
 
-            <TabsContent value="checkpoints" className="space-y-6 mt-0">
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                      <Target className="w-5 h-5 text-emerald-600" />
-                      Checkpoints da Missão
-                    </h3>
-                    <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium">
-                      {challenge.checkpoints.filter(c => c.required).length} obrigatórios
-                    </span>
-                  </div>
-                  <p className="text-gray-600 text-sm mb-4">
-                    Complete todos os checkpoints obrigatórios para finalizar a missão e receber o pagamento.
-                  </p>
+              <p className="text-gray-600 mb-4">
+                {showFullDescription ? challenge.fullDescription : challenge.description}
+              </p>
 
-                  {/* Summary Stats */}
-                  <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-xl mb-4">
-                    <div className="text-center">
-                      <div className="font-bold text-gray-800">{challenge.checkpoints.length}</div>
-                      <div className="text-xs text-gray-500">Total</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-bold text-red-600">{challenge.checkpoints.filter(c => c.required).length}</div>
-                      <div className="text-xs text-gray-500">Obrigatórios</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="font-bold text-emerald-600">{challenge.checkpoints.reduce((sum, c) => sum + c.points, 0)}</div>
-                      <div className="text-xs text-gray-500">Pontos</div>
-                    </div>
-                  </div>
-                </div>
+              <button 
+                onClick={() => setShowFullDescription(!showFullDescription)}
+                className="text-emerald-600 font-medium text-sm flex items-center gap-1"
+              >
+                {showFullDescription ? 'Ver menos' : 'Ver descrição completa'}
+                <ChevronRight className={`w-4 h-4 transition-transform ${showFullDescription ? 'rotate-90' : ''}`} />
+              </button>
 
-                {challenge.checkpoints.map((checkpoint, index) => (
-                  <CheckpointCard key={checkpoint.id} checkpoint={checkpoint} index={index} />
+              <div className="flex flex-wrap gap-2 mt-4">
+                {challenge.tags.map((tag, index) => (
+                  <span key={index} className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-sm">
+                    {tag}
+                  </span>
                 ))}
               </div>
-            </TabsContent>
+            </div>
 
-            <TabsContent value="client" className="space-y-6 mt-0">
-              <div className="space-y-6">
-                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
-                        {challenge.client.avatar}
-                      </div>
-                      {challenge.client.verified && (
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                          <CheckCircle2 className="w-4 h-4 text-white" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="font-bold text-gray-800 text-lg">{challenge.client.name}</h3>
-                        {challenge.client.verified && (
-                          <Shield className="w-5 h-5 text-blue-500" />
-                        )}
-                      </div>
-                      <div className="flex items-center gap-3 text-sm mb-2">
-                        <div className="flex items-center gap-1">
-                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                          <span className="font-semibold">{challenge.client.rating}</span>
-                          <span className="text-gray-500">({challenge.client.reviews} avaliações)</span>
-                        </div>
-                      </div>
-                      <p className="text-emerald-600 font-medium text-sm">
-                        Responde {challenge.client.responseTime}
-                      </p>
-                    </div>
-                  </div>
+            {/* Requirements */}
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+              <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <Package className="w-5 h-5 text-gray-600" />
+                Requisitos
+              </h3>
+              <ul className="space-y-2">
+                {challenge.requirements.map((req, index) => (
+                  <li key={index} className="flex items-center gap-3 text-gray-600">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                    {req}
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-                  <p className="text-gray-600 mb-4">{challenge.client.bio}</p>
-
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <Briefcase className="w-5 h-5 text-gray-600 mx-auto mb-1" />
-                      <div className="font-semibold text-gray-800">{challenge.client.completedMissions}</div>
-                      <div className="text-xs text-gray-500">Missões publicadas</div>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-3 text-center">
-                      <Calendar className="w-5 h-5 text-gray-600 mx-auto mb-1" />
-                      <div className="font-semibold text-gray-800">{challenge.client.memberSince}</div>
-                      <div className="text-xs text-gray-500">Membro desde</div>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <Button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold">
-                      <MessageCircle className="w-5 h-5" />
-                      Conversar
-                    </Button>
-                    <Button variant="secondary" size="icon" className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl">
-                      <Phone className="w-5 h-5" />
-                    </Button>
-                  </div>
+            {/* Rewards */}
+            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-5">
+              <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <Medal className="w-5 h-5 text-emerald-600" />
+                Recompensas
+              </h3>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-white rounded-lg p-3 text-center">
+                  <DollarSign className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
+                  <div className="font-bold text-emerald-600">{challenge.rewards.money}</div>
+                  <div className="text-xs text-gray-500">Pagamento</div>
+                </div>
+                <div className="bg-white rounded-lg p-3 text-center">
+                  <Award className="w-5 h-5 text-blue-600 mx-auto mb-1" />
+                  <div className="font-bold text-blue-600">{challenge.rewards.points}</div>
+                  <div className="text-xs text-gray-500">Pontos</div>
                 </div>
               </div>
-            </TabsContent>
+              <div className="mt-3 p-3 bg-white rounded-lg">
+                <p className="text-sm text-gray-600">
+                  <strong>Bônus:</strong> {challenge.rewards.badge} • {challenge.rewards.experience}
+                </p>
+              </div>
             </div>
-          </Tabs>
+
+            {/* Risk Factors */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
+              <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-yellow-600" />
+                Pontos de Atenção
+              </h3>
+              <ul className="space-y-2">
+                {challenge.riskFactors.map((risk, index) => (
+                  <li key={index} className="flex items-start gap-3 text-yellow-800">
+                    <Info className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    {risk}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'checkpoints' && (
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-bold text-gray-800 flex items-center gap-2">
+                  <Target className="w-5 h-5 text-emerald-600" />
+                  Checkpoints da Missão
+                </h3>
+                <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium">
+                  {challenge.checkpoints.filter(c => c.required).length} obrigatórios
+                </span>
+              </div>
+              <p className="text-gray-600 text-sm mb-4">
+                Complete todos os checkpoints obrigatórios para finalizar a missão e receber o pagamento.
+              </p>
+
+              {/* Summary Stats */}
+              <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-xl mb-4">
+                <div className="text-center">
+                  <div className="font-bold text-gray-800">{challenge.checkpoints.length}</div>
+                  <div className="text-xs text-gray-500">Total</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-bold text-red-600">{challenge.checkpoints.filter(c => c.required).length}</div>
+                  <div className="text-xs text-gray-500">Obrigatórios</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-bold text-emerald-600">{challenge.checkpoints.reduce((sum, c) => sum + c.points, 0)}</div>
+                  <div className="text-xs text-gray-500">Pontos</div>
+                </div>
+              </div>
+            </div>
+
+            {challenge.checkpoints.map((checkpoint, index) => (
+              <CheckpointCard key={checkpoint.id} checkpoint={checkpoint} index={index} />
+            ))}
+          </div>
+        )}
+
+        {activeTab === 'client' && (
+          <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="relative">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
+                    {challenge.client.avatar}
+                  </div>
+                  {challenge.client.verified && (
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                      <CheckCircle2 className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="font-bold text-gray-800 text-lg">{challenge.client.name}</h3>
+                    {challenge.client.verified && (
+                      <Shield className="w-5 h-5 text-blue-500" />
+                    )}
+                  </div>
+                  <div className="flex items-center gap-3 text-sm mb-2">
+                    <div className="flex items-center gap-1">
+                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      <span className="font-semibold">{challenge.client.rating}</span>
+                      <span className="text-gray-500">({challenge.client.reviews} avaliações)</span>
+                    </div>
+                  </div>
+                  <p className="text-emerald-600 font-medium text-sm">
+                    Responde {challenge.client.responseTime}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-gray-600 mb-4">{challenge.client.bio}</p>
+
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-gray-50 rounded-lg p-3 text-center">
+                  <Briefcase className="w-5 h-5 text-gray-600 mx-auto mb-1" />
+                  <div className="font-semibold text-gray-800">{challenge.client.completedMissions}</div>
+                  <div className="text-xs text-gray-500">Missões publicadas</div>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3 text-center">
+                  <Calendar className="w-5 h-5 text-gray-600 mx-auto mb-1" />
+                  <div className="font-semibold text-gray-800">{challenge.client.memberSince}</div>
+                  <div className="text-xs text-gray-500">Membro desde</div>
+                </div>
+              </div>
+
+              <div className="flex gap-3">
+                <button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2">
+                  <MessageCircle className="w-5 h-5" />
+                  Conversar
+                </button>
+                <button className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl flex items-center justify-center">
+                  <Phone className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
         </div>
       </div>
 
       {/* Action Buttons - Fixed */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <div className="max-w-md mx-auto flex gap-3">
-          <Button 
+          <button 
             onClick={onClose}
-            variant="secondary"
-            className="flex-1 py-4 rounded-2xl font-semibold"
+            className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-colors"
           >
             <X className="w-5 h-5" />
             Fechar
-          </Button>
-          <Button 
+          </button>
+          <button 
             onClick={onAccept}
-            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold shadow-lg"
+            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg"
           >
             <Heart className="w-5 h-5" />
             Aceitar Missão
-          </Button>
+          </button>
         </div>
       </div>
     </div>

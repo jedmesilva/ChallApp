@@ -241,78 +241,84 @@ const MissionExecutionScreen = () => {
   );
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 min-h-screen">
+    <div className="max-w-md mx-auto min-h-screen" style={{ background: 'var(--gradient-bg)' }}>
       <ChatModal />
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-500 to-teal-600 p-6 pt-12 text-white">
-        <div className="flex items-center gap-4 mb-4">
-          <button 
-            onClick={() => setLocation('/')}
-            className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <div className="flex-1">
-            <h1 className="text-xl font-bold">Missão em Andamento</h1>
-            <p className="text-emerald-100 text-sm">{mission.title}</p>
-          </div>
-          <div className="flex gap-2">
+      <div className="gradient-header p-6 pt-12 text-white relative overflow-hidden">
+        {/* Background decorations */}
+        <div className="absolute top-0 right-0 w-40 h-40 bg-white/10 rounded-full -translate-y-20 translate-x-20"></div>
+        <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full translate-y-16 -translate-x-16"></div>
+        
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-4">
             <button 
-              onClick={() => setShowChat(true)}
-              className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30 relative"
+              onClick={() => setLocation('/')}
+              className="p-3 glass-card-light rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105"
             >
-              <MessageCircle className="w-5 h-5" />
-              <div className="absolute top-1 right-1 w-3 h-3 bg-red-500 rounded-full"></div>
+              <ChevronLeft className="w-6 h-6" />
             </button>
-            <button className="p-2 bg-white bg-opacity-20 rounded-full hover:bg-opacity-30">
-              <Phone className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* Progress and Timer */}
-        <div className="space-y-3 mb-4">
-          <div className="flex items-center justify-between">
-            <span className="text-emerald-100 text-sm">Progresso da missão</span>
-            <span className="text-white font-semibold">{completedSteps.length}/{mission.steps.length} etapas</span>
-          </div>
-          <div className="bg-white bg-opacity-20 rounded-full h-3 overflow-hidden">
-            <div 
-              className="bg-white rounded-full h-3 transition-all duration-500"
-              style={{ width: `${progressPercentage}%` }}
-            ></div>
-          </div>
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-2">
-              <Timer className="w-4 h-4" />
-              <span className="text-emerald-100">Tempo: {formatTime(missionTimer)}</span>
+            <div className="flex-1">
+              <h1 className="text-2xl font-bold">Missão em Andamento</h1>
+              <p className="text-orange-100 text-sm">{mission.title}</p>
             </div>
-            <span className="text-emerald-100">Limite: {mission.timeLimit}</span>
+            <div className="flex gap-3">
+              <button 
+                onClick={() => setShowChat(true)}
+                className="p-3 glass-card-light rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105 relative"
+              >
+                <MessageCircle className="w-5 h-5" />
+                <div className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+              </button>
+              <button className="p-3 glass-card-light rounded-full hover:bg-white/30 transition-all duration-200 hover:scale-105">
+                <Phone className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Progress and Timer */}
+          <div className="space-y-3 mb-4">
+            <div className="flex items-center justify-between">
+              <span className="text-orange-100 text-sm">Progresso da missão</span>
+              <span className="text-white font-semibold">{completedSteps.length}/{mission.steps.length} etapas</span>
+            </div>
+            <div className="glass-card-light rounded-full h-3 overflow-hidden">
+              <div 
+                className="bg-white rounded-full h-3 transition-all duration-500"
+                style={{ width: `${progressPercentage}%` }}
+              ></div>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <div className="flex items-center gap-2">
+                <Timer className="w-4 h-4" />
+                <span className="text-orange-100">Tempo: {formatTime(missionTimer)}</span>
+              </div>
+              <span className="text-orange-100">Limite: {mission.timeLimit}</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Mission Info Card */}
       <div className="px-6 -mt-6 relative z-10 mb-6">
-        <div className="bg-white rounded-2xl p-4 shadow-lg border border-gray-100">
+        <div className="glass-card rounded-3xl p-5 shadow-lg">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-xl">
                 {mission.client.avatar}
               </div>
               <div>
-                <h3 className="font-semibold text-gray-800">{mission.client.name}</h3>
+                <h3 className="font-semibold text-primary">{mission.client.name}</h3>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  <span className="text-sm text-gray-600">{mission.client.rating}</span>
+                  <span className="text-sm text-secondary">{mission.client.rating}</span>
                 </div>
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-emerald-600">{mission.price}</div>
-              <div className="flex items-center gap-1 text-sm text-gray-500">
-                <MapPin className="w-4 h-4" />
+              <div className="text-3xl font-bold gradient-primary bg-clip-text text-transparent">{mission.price}</div>
+              <div className="flex items-center gap-1 text-sm text-secondary">
+                <MapPin className="w-4 h-4 text-orange-500" />
                 {mission.location}
               </div>
             </div>
@@ -322,7 +328,7 @@ const MissionExecutionScreen = () => {
 
       {/* Steps Progress */}
       <div className="px-6 mb-6">
-        <h2 className="text-lg font-bold text-gray-800 mb-4">Etapas da Missão</h2>
+        <h2 className="text-xl font-bold text-primary mb-5">Etapas da Missão</h2>
         <div className="space-y-4">
           {mission.steps.map((step, index) => {
             const isCompleted = completedSteps.includes(step.id);
@@ -330,17 +336,17 @@ const MissionExecutionScreen = () => {
             const isAccessible = index <= currentStep;
 
             return (
-              <div key={step.id} className={`border-2 rounded-2xl p-4 transition-all ${
-                isCurrent ? 'border-emerald-500 bg-emerald-50' :
-                isCompleted ? 'border-green-500 bg-green-50' :
-                isAccessible ? 'border-gray-200 bg-white' :
-                'border-gray-100 bg-gray-50 opacity-60'
+              <div key={step.id} className={`glass-card border-2 rounded-3xl p-5 transition-all duration-300 ${
+                isCurrent ? 'border-orange-500 gradient-card-secondary' :
+                isCompleted ? 'border-green-500 bg-green-50/50 dark:bg-green-500/20' :
+                isAccessible ? 'border-white/20 dark:border-white/10' :
+                'border-white/10 dark:border-white/5 opacity-60'
               }`}>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    isCurrent ? 'bg-emerald-500' :
-                    isCompleted ? 'bg-green-500' :
-                    'bg-gray-200'
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                    isCurrent ? 'gradient-primary shadow-lg' :
+                    isCompleted ? 'bg-green-500 shadow-lg' :
+                    'glass-card-light'
                   }`}>
                     {isCompleted ? (
                       <CheckCircle2 className="w-6 h-6 text-white" />
@@ -349,10 +355,10 @@ const MissionExecutionScreen = () => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h3 className={`font-semibold ${isCurrent ? 'text-emerald-800' : isCompleted ? 'text-green-800' : 'text-gray-800'}`}>
+                    <h3 className={`font-semibold text-lg ${isCurrent ? 'text-orange-600' : isCompleted ? 'text-green-600' : 'text-primary'}`}>
                       {step.title}
                     </h3>
-                    <p className={`text-sm ${isCurrent ? 'text-emerald-600' : isCompleted ? 'text-green-600' : 'text-gray-600'}`}>
+                    <p className={`text-sm ${isCurrent ? 'text-orange-500' : isCompleted ? 'text-green-500' : 'text-secondary'}`}>
                       {step.description}
                     </p>
                   </div>
@@ -367,19 +373,19 @@ const MissionExecutionScreen = () => {
                 </div>
 
                 {isCurrent && (
-                  <div className="mt-4 p-3 bg-white rounded-xl border border-emerald-200">
-                    <h4 className="font-medium text-gray-800 mb-2">Instruções:</h4>
-                    <ul className="space-y-1 text-sm text-gray-600">
+                  <div className="mt-4 p-4 glass-card-light rounded-2xl border border-orange-200/50">
+                    <h4 className="font-semibold text-primary mb-3">Instruções:</h4>
+                    <ul className="space-y-2 text-sm text-secondary">
                       {step.instructions.map((instruction, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
-                          {instruction}
+                        <li key={idx} className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="leading-relaxed">{instruction}</span>
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-3 p-2 bg-gray-50 rounded-lg">
-                      <p className="text-xs text-gray-500">
-                        <strong>Verificação:</strong> {step.verification}
+                    <div className="mt-4 p-3 glass-card-light rounded-xl border border-white/20 dark:border-white/10">
+                      <p className="text-xs text-secondary">
+                        <strong className="text-primary">Verificação:</strong> {step.verification}
                       </p>
                     </div>
                   </div>

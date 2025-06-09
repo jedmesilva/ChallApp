@@ -331,7 +331,7 @@ const MissionsApp = () => {
             acceptedMissions.map((acceptedMission, index) => (
               <div key={acceptedMission.id} className="bg-white rounded-3xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                 <div className="flex items-start gap-4">
-                  <div className={`p-3 ${acceptedMission.categoryColor} rounded-2xl shadow-lg`}>
+                  <div className="p-3 btn-header rounded-2xl shadow-lg">
                     <acceptedMission.icon className="w-6 h-6 text-white" />
                   </div>
                   <div className="flex-1">
@@ -448,7 +448,7 @@ const MissionsApp = () => {
 
             <div className="p-6 pb-4">
               <div className="flex items-center gap-3 mb-4">
-                <div className="p-4 gradient-primary rounded-2xl shadow-lg">
+                <div className="p-4 btn-header rounded-2xl shadow-lg">
                   <IconComponent className="w-7 h-7 text-white" />
                 </div>
                 <div className="flex-1">
@@ -534,7 +534,7 @@ const MissionsApp = () => {
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 border border-gray-200 dark:border-gray-700 shadow-sm">
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="w-14 h-14 gradient-primary rounded-full flex items-center justify-center text-2xl text-white">
+                    <div className="w-14 h-14 btn-header rounded-full flex items-center justify-center text-2xl text-white">
                       {mission.client.avatar}
                     </div>
                     {mission.client.verified && (

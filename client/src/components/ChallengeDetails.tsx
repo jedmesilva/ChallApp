@@ -418,7 +418,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className={`p-3 ${challenge.categoryColor} rounded-xl`}>
+                  <div className="p-3 btn-header rounded-xl">
                     <challenge.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>

@@ -335,11 +335,11 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
   };
 
   return (
-    <div className="max-w-md mx-auto bg-gray-50 dark:bg-gray-900 h-screen flex flex-col" style={{ background: 'var(--gradient-bg)' }}>
+    <div className="max-w-md mx-auto bg-gray-50 dark:bg-gray-900 h-screen flex flex-col fixed inset-0 z-50" style={{ background: 'var(--gradient-bg)' }}>
       {/* Scrollable Content - Everything scrolls together */}
       <div className="flex-1 overflow-y-auto pb-24">
         {/* Header */}
-        <div className="gradient-header p-6 pt-12 text-white relative overflow-hidden">
+        <div className="gradient-header p-6 pt-6 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-white bg-opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
 
           <div className="relative z-10">

@@ -75,27 +75,27 @@ export function MissionCard({
       onSwipeDown={onSave}
       threshold={100}
     >
-      <div className="glass-card dark:glass-card-dark rounded-3xl p-6 relative swipe-card border border-white/20 dark:border-white/10">
+      <div className="glass-card rounded-3xl p-6 relative swipe-card">
         {/* Match Percentage Badge */}
-        <div className="absolute -top-2 left-6 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+        <div className="absolute -top-2 left-6 gradient-primary text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
           {mission.matchPercentage}% match
         </div>
 
         {/* Category Badge */}
         <div className="flex items-center justify-between mb-4 mt-2">
           <div className="flex items-center space-x-2">
-            <div className="glass-card dark:glass-card-dark text-foreground px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-2 border border-white/20 dark:border-white/10">
+            <div className="gradient-card-secondary text-primary px-4 py-2 rounded-full text-sm font-medium flex items-center space-x-2 border border-white/20 dark:border-white/10">
               <span>{getCategoryIcon(mission.category)}</span>
               <span className="font-semibold">{mission.category}</span>
             </div>
           </div>
-          <div className="text-sm text-muted-foreground">
+          <div className="text-sm text-secondary">
             {mission.interestedCount} interessados
           </div>
         </div>
 
         {/* Mission Title */}
-        <h2 className="text-xl font-bold text-foreground mb-4">{mission.title}</h2>
+        <h2 className="text-xl font-bold text-primary mb-4">{mission.title}</h2>
 
         {/* Mission Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -111,15 +111,15 @@ export function MissionCard({
         </div>
 
         {/* Mission Description */}
-        <p className="text-muted-foreground mb-6 leading-relaxed">
+        <p className="text-secondary mb-6 leading-relaxed">
           {mission.shortDescription}
         </p>
 
         {/* Location */}
         <div className="flex items-center space-x-2 mb-4">
           <MapPin className="w-4 h-4 text-orange-500" />
-          <span className="font-medium text-foreground">{mission.location}</span>
-          <span className="text-sm text-muted-foreground">{mission.distance}</span>
+          <span className="font-medium text-primary">{mission.location}</span>
+          <span className="text-sm text-secondary">{mission.distance}</span>
         </div>
 
         {/* Time and Payment Info */}
@@ -127,7 +127,7 @@ export function MissionCard({
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <Clock className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-medium text-foreground">
+              <span className="text-sm font-medium text-primary">
                 {mission.duration}
               </span>
             </div>
@@ -137,10 +137,10 @@ export function MissionCard({
           </div>
           <div className="text-right">
             <div className="flex items-center space-x-1">
-              <DollarSign className="w-4 h-4 text-muted-foreground" />
-              <span className="text-sm text-muted-foreground">R$</span>
+              <DollarSign className="w-4 h-4 text-secondary" />
+              <span className="text-sm text-secondary">R$</span>
             </div>
-            <div className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
+            <div className="text-3xl font-bold gradient-primary bg-clip-text text-transparent">
               {mission.payment}
             </div>
             <Badge className={getDifficultyColor(mission.difficulty)}>
@@ -151,7 +151,7 @@ export function MissionCard({
 
         {/* Mission Advantages */}
         <div className="mb-6">
-          <h4 className="font-semibold text-foreground mb-3">
+          <h4 className="font-semibold text-primary mb-3">
             Vantagens desta missão
           </h4>
           <div className="flex flex-wrap gap-2">
@@ -159,7 +159,7 @@ export function MissionCard({
               <Badge
                 key={index}
                 variant="outline"
-                className="text-xs glass-card dark:glass-card-dark text-blue-700 dark:text-blue-300 border-blue-200/50 dark:border-blue-500/30"
+                className="text-xs glass-card-light text-blue-700 dark:text-blue-300 border-blue-200/50 dark:border-blue-500/30"
               >
                 {advantage}
               </Badge>
@@ -169,11 +169,11 @@ export function MissionCard({
 
         {/* Client Information */}
         {mission.client && (
-          <div className="flex items-center space-x-3 p-4 glass-card dark:glass-card-dark rounded-2xl border border-white/20 dark:border-white/10">
+          <div className="flex items-center space-x-3 p-4 glass-card-light rounded-2xl border border-white/20 dark:border-white/10">
             <div className="relative">
               <Avatar className="w-12 h-12">
                 <AvatarImage src={mission.client.profileImage} />
-                <AvatarFallback className="bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold">
+                <AvatarFallback className="gradient-primary text-white font-semibold">
                   {mission.client.name
                     .split(" ")
                     .map((n) => n[0])
@@ -188,7 +188,7 @@ export function MissionCard({
             </div>
             <div className="flex-1">
               <div className="flex items-center space-x-2">
-                <span className="font-semibold text-foreground">
+                <span className="font-semibold text-primary">
                   {mission.client.name}
                 </span>
                 {mission.client.isVerified && (
@@ -197,7 +197,7 @@ export function MissionCard({
                   </Badge>
                 )}
               </div>
-              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+              <div className="flex items-center space-x-2 text-sm text-secondary">
                 <div className="flex items-center space-x-1">
                   <Star className="w-3 h-3 text-yellow-400 fill-current" />
                   <span>{mission.client.rating}</span>

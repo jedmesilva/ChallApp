@@ -440,7 +440,7 @@ const MissionsApp = () => {
           {/* Card Header with Match Score */}
           <div className="relative">
             <div className="absolute top-4 right-4 z-10">
-              <div className="gradient-primary text-white px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg">
+              <div className="bg-white/90 dark:bg-gray-800/90 text-orange-600 dark:text-orange-400 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-lg border border-white/20 dark:border-gray-700/20 backdrop-blur-sm">
                 <Zap className="w-4 h-4" />
                 {mission.matchScore}% match
               </div>

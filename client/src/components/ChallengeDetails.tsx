@@ -399,7 +399,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
                 onClick={() => setActiveTab(tab)}
                 className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all ${
                   activeTab === tab
-                    ? 'bg-emerald-500 text-white shadow-md'
+                    ? 'btn-header text-white shadow-md'
                     : 'text-gray-600 hover:text-gray-800'
                 }`}
               >
@@ -624,17 +624,10 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
       {/* Action Buttons - Fixed */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-        <div className="max-w-md mx-auto flex gap-3">
-          <button 
-            onClick={onClose}
-            className="flex-1 btn-header text-white py-4 rounded-2xl font-semibold flex items-center justify-center gap-2"
-          >
-            <X className="w-5 h-5" />
-            Fechar
-          </button>
+        <div className="max-w-md mx-auto">
           <button 
             onClick={onAccept}
-            className="flex-1 btn-header text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2"
+            className="w-full btn-header text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2"
           >
             <Heart className="w-5 h-5" />
             Aceitar Missão

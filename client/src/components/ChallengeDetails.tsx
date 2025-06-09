@@ -7,6 +7,7 @@ import {
   Shield, Briefcase, Calendar, Route, Upload, Info, PlayCircle,
   CheckSquare, ArrowRight, Lightbulb, Package, Medal
 } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 interface ChallengeDetailsProps {
   mission?: any;
@@ -453,9 +454,13 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {challenge.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 hover:bg-orange-200/50 dark:hover:bg-orange-500/30 border border-white/20 dark:border-white/10 rounded-full text-sm font-medium">
+                  <Badge
+                    key={index}
+                    variant="secondary"
+                    className="bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 hover:bg-orange-200/50 dark:hover:bg-orange-500/30 border border-white/20 dark:border-white/10"
+                  >
                     {tag}
-                  </span>
+                  </Badge>
                 ))}
               </div>
             </div>

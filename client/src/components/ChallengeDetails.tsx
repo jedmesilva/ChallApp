@@ -453,7 +453,7 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {challenge.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-orange-primary/10 dark:bg-orange-primary/20 text-orange-primary border border-orange-primary/30 rounded-full text-sm font-medium">
+                  <span key={index} className="px-3 py-1 bg-orange-100/50 text-orange-600 dark:bg-orange-500/20 dark:text-orange-300 hover:bg-orange-200/50 dark:hover:bg-orange-500/30 border border-white/20 dark:border-white/10 rounded-full text-sm font-medium">
                     {tag}
                   </span>
                 ))}

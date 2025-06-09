@@ -373,19 +373,19 @@ const MissionExecutionScreen = () => {
                 </div>
 
                 {isCurrent && (
-                  <div className="mt-4 p-4 glass-card-light rounded-2xl border border-orange-200/50">
-                    <h4 className="font-semibold text-primary mb-3">Instruções:</h4>
-                    <ul className="space-y-2 text-sm text-secondary">
+                  <div className="mt-4 p-4 bg-orange-50 dark:bg-orange-500/10 rounded-2xl border border-orange-200 dark:border-orange-500/30">
+                    <h4 className="font-semibold text-gray-800 dark:text-white mb-3">Instruções:</h4>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                       {step.instructions.map((instruction, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="leading-relaxed">{instruction}</span>
+                          <span className="leading-relaxed font-medium">{instruction}</span>
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-4 p-3 glass-card-light rounded-xl border border-white/20 dark:border-white/10">
-                      <p className="text-xs text-secondary">
-                        <strong className="text-primary">Verificação:</strong> {step.verification}
+                    <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
+                      <p className="text-xs text-gray-600 dark:text-gray-300 font-medium">
+                        <strong className="text-gray-800 dark:text-white">Verificação:</strong> {step.verification}
                       </p>
                     </div>
                   </div>

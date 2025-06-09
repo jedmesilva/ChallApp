@@ -540,24 +540,16 @@ const MissionsApp = () => {
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
-                      <div className="flex items-center gap-2">
-                        <p className="font-bold text-gray-800 dark:text-white text-sm truncate">{mission.client.name}</p>
-                        {mission.client.verified && (
-                          <span className="text-orange-600 dark:text-orange-400 text-xs font-medium flex-shrink-0">Verificado</span>
-                        )}
-                      </div>
-                      <button className="p-1 hover:bg-white/10 rounded-full transition-colors self-start sm:self-center">
-                        <MessageCircle className="w-4 h-4 text-gray-600 dark:text-gray-300" />
-                      </button>
+                    <div className="flex items-center gap-2 mb-2">
+                      <p className="font-bold text-gray-800 dark:text-white text-sm truncate">{mission.client.name}</p>
+                      {mission.client.verified && (
+                        <span className="text-orange-600 dark:text-orange-400 text-xs font-medium flex-shrink-0">Verificado</span>
+                      )}
                     </div>
-                    <div className="flex flex-col gap-1 text-sm">
-                      <div className="flex items-center gap-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
-                        <span className="font-semibold text-gray-800 dark:text-white">{mission.client.rating}</span>
-                        <span className="text-gray-600 dark:text-gray-300">({mission.client.reviews})</span>
-                      </div>
-                      <span className="text-orange-600 dark:text-orange-400 font-medium text-xs">Responde {mission.client.responseTime}</span>
+                    <div className="flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400 flex-shrink-0" />
+                      <span className="font-semibold text-gray-800 dark:text-white">{mission.client.rating}</span>
+                      <span className="text-gray-600 dark:text-gray-300">({mission.client.reviews})</span>
                     </div>
                   </div>
                 </div>

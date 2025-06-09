@@ -11,14 +11,14 @@ const MissionExecutionScreen = () => {
   const params = useParams();
   const [, setLocation] = useLocation();
   const [currentStep, setCurrentStep] = useState(0);
-  const [completedSteps, setCompletedSteps] = useState([]);
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingTime, setRecordingTime] = useState(0);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [showUpload, setShowUpload] = useState(false);
   const [missionTimer, setMissionTimer] = useState(0);
   const [showChat, setShowChat] = useState(false);
-  const [chatMessages, setChatMessages] = useState([
+  const [chatMessages, setChatMessages] = useState<any[]>([
     {
       id: 1,
       sender: 'client',
@@ -133,13 +133,13 @@ const MissionExecutionScreen = () => {
     return () => clearInterval(interval);
   }, [currentStep, isRecording]);
 
-  const formatTime = (seconds) => {
+  const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const completeStep = (stepId) => {
+  const completeStep = (stepId: number) => {
     if (!completedSteps.includes(stepId)) {
       setCompletedSteps([...completedSteps, stepId]);
       if (stepId === mission.steps[currentStep].id && currentStep < mission.steps.length - 1) {
@@ -171,8 +171,8 @@ const MissionExecutionScreen = () => {
   const currentStepData = mission.steps[currentStep];
   const progressPercentage = (completedSteps.length / mission.steps.length) * 100;
 
-  const StepIcon = ({ step, completed, current }) => {
-    const iconClass = `w-6 h-6 ${current ? 'text-white' : completed ? 'text-emerald-600' : 'text-gray-400'}`;
+  const StepIcon = ({ step, completed, current }: { step: any; completed: boolean; current: boolean }) => {
+    const iconClass = `w-6 h-6 ${current ? 'text-white' : completed ? 'text-green-600' : 'text-gray-600'}`;
     
     switch (step.type) {
       case 'location': return <Navigation className={iconClass} />;
@@ -188,7 +188,7 @@ const MissionExecutionScreen = () => {
   const ChatModal = () => (
     <div className={`fixed inset-0 z-50 transition-all duration-300 ${showChat ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={() => setShowChat(false)} />
-      <div className={`absolute bottom-0 left-0 right-0 bg-white rounded-t-3xl transition-transform duration-300 ${showChat ? 'translate-y-0' : 'translate-y-full'}`} style={{ height: '70vh' }}>
+      <div className={`absolute bottom-0 left-0 right-0 glass-card rounded-t-3xl transition-transform duration-300 border border-white/20 dark:border-white/10 ${showChat ? 'translate-y-0' : 'translate-y-full'}`} style={{ height: '70vh' }}>
         <div className="p-4 border-b border-gray-200 flex items-center gap-3">
           <button onClick={() => setShowChat(false)} className="p-2 hover:bg-gray-100 rounded-full">
             <ChevronLeft className="w-5 h-5" />
@@ -213,10 +213,10 @@ const MissionExecutionScreen = () => {
                 </div>
               )}
               <div className={`max-w-xs p-3 rounded-2xl ${
-                msg.sender === 'user' ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-800'
+                msg.sender === 'user' ? 'gradient-primary text-white shadow-lg' : 'glass-card-light text-primary border border-white/20 dark:border-white/10'
               }`}>
-                <p className="text-sm">{msg.message}</p>
-                <p className={`text-xs mt-1 ${msg.sender === 'user' ? 'text-emerald-100' : 'text-gray-500'}`}>
+                <p className="text-sm font-medium">{msg.message}</p>
+                <p className={`text-xs mt-1 ${msg.sender === 'user' ? 'text-orange-100' : 'text-secondary'}`}>
                   {msg.time}
                 </p>
               </div>
@@ -224,14 +224,14 @@ const MissionExecutionScreen = () => {
           ))}
         </div>
         
-        <div className="p-4 border-t border-gray-200">
-          <div className="flex gap-2">
+        <div className="p-4 glass-card border-t border-white/20 dark:border-white/10">
+          <div className="flex gap-3">
             <input 
               type="text" 
               placeholder="Digite uma mensagem..."
-              className="flex-1 p-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-emerald-500"
+              className="flex-1 p-3 glass-card-light border border-white/30 dark:border-white/15 rounded-2xl focus:outline-none focus:border-orange-500 text-primary placeholder-secondary"
             />
-            <button className="p-3 bg-emerald-500 text-white rounded-2xl hover:bg-emerald-600">
+            <button className="p-3 btn-primary rounded-2xl transition-all duration-200 hover:scale-105 shadow-lg">
               <Send className="w-5 h-5" />
             </button>
           </div>
@@ -304,7 +304,7 @@ const MissionExecutionScreen = () => {
         <div className="glass-card rounded-3xl p-5 shadow-lg">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-xl">
+              <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center text-xl font-bold text-white shadow-lg">
                 {mission.client.avatar}
               </div>
               <div>
@@ -364,11 +364,11 @@ const MissionExecutionScreen = () => {
                   </div>
                   <div className="text-right">
                     {step.required && (
-                      <span className="text-xs bg-red-100 text-red-700 px-2 py-1 rounded-full mb-1 block">
+                      <span className="text-xs bg-red-100 dark:bg-red-500/20 text-red-700 dark:text-red-300 px-3 py-1 rounded-full mb-2 block font-medium">
                         Obrigatório
                       </span>
                     )}
-                    <span className="text-xs text-gray-500">{step.estimatedTime}</span>
+                    <span className="text-xs text-secondary font-medium">{step.estimatedTime}</span>
                   </div>
                 </div>
 
@@ -392,9 +392,9 @@ const MissionExecutionScreen = () => {
                 )}
 
                 {isCompleted && (
-                  <div className="mt-3 flex items-center gap-2 text-green-600">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span className="text-sm font-medium">Etapa concluída!</span>
+                  <div className="mt-4 flex items-center gap-2 text-green-600 dark:text-green-400">
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span className="text-sm font-semibold">Etapa concluída!</span>
                   </div>
                 )}
               </div>

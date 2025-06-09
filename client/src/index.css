@@ -103,16 +103,26 @@
 
   /* Cards com Glassmorphism */
   .glass-card {
-    background: var(--card);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
+  .dark .glass-card {
+    background: rgba(30, 30, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
   .glass-card-light {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .dark .glass-card-light {
+    background: rgba(40, 40, 40, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.15);
   }
 
   .glass-card-dark {
@@ -151,11 +161,19 @@
 
   /* Utilidades de texto */
   .text-primary {
-    color: var(--text-primary);
+    color: hsl(0, 0%, 15%);
+  }
+
+  .dark .text-primary {
+    color: hsl(0, 0%, 95%);
   }
 
   .text-secondary {
-    color: var(--text-secondary);
+    color: hsl(0, 0%, 45%);
+  }
+
+  .dark .text-secondary {
+    color: hsl(0, 0%, 65%);
   }
 
   .mobile-container {

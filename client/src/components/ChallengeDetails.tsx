@@ -417,213 +417,214 @@ const ChallengeDetailsScreen = ({ mission, onClose, onAccept }: ChallengeDetails
 
             {/* Tab Content */}
             <div className="mt-6">
-              <TabsContent value="overview" className="space-y-6 mt-0">{
-          <div className="space-y-6">
-            {/* Main Info Card */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className={`p-3 ${challenge.categoryColor} rounded-xl`}>
-                    <challenge.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="font-bold text-gray-800">{challenge.title}</h2>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                      <MapPin className="w-4 h-4" />
-                      {challenge.location} • {challenge.distance}
+              <TabsContent value="overview" className="space-y-6 mt-0">
+              <div className="space-y-6">
+                {/* Main Info Card */}
+                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`p-3 ${challenge.categoryColor} rounded-xl`}>
+                        <challenge.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h2 className="font-bold text-gray-800">{challenge.title}</h2>
+                        <div className="flex items-center gap-2 text-sm text-gray-500">
+                          <MapPin className="w-4 h-4" />
+                          {challenge.location} • {challenge.distance}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-emerald-600">{challenge.price}</div>
+                      <span className={`text-sm px-2 py-1 rounded-full ${
+                        challenge.urgency === 'Urgente' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
+                      }`}>
+                        {challenge.urgency}
+                      </span>
                     </div>
                   </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-2xl font-bold text-emerald-600">{challenge.price}</div>
-                  <span className={`text-sm px-2 py-1 rounded-full ${
-                    challenge.urgency === 'Urgente' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
-                  }`}>
-                    {challenge.urgency}
-                  </span>
-                </div>
-              </div>
 
-              <p className="text-gray-600 mb-4">
-                {showFullDescription ? challenge.fullDescription : challenge.description}
-              </p>
-
-              <Button 
-                onClick={() => setShowFullDescription(!showFullDescription)}
-                variant="link"
-                className="text-emerald-600 font-medium text-sm p-0 h-auto"
-              >
-                {showFullDescription ? 'Ver menos' : 'Ver descrição completa'}
-                <ChevronRight className={`w-4 h-4 transition-transform ${showFullDescription ? 'rotate-90' : ''}`} />
-              </Button>
-
-              <div className="flex flex-wrap gap-2 mt-4">
-                {challenge.tags.map((tag, index) => (
-                  <span key={index} className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-sm">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Requirements */}
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-              <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Package className="w-5 h-5 text-gray-600" />
-                Requisitos
-              </h3>
-              <ul className="space-y-2">
-                {challenge.requirements.map((req, index) => (
-                  <li key={index} className="flex items-center gap-3 text-gray-600">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                    {req}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Rewards */}
-            <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-5">
-              <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Medal className="w-5 h-5 text-emerald-600" />
-                Recompensas
-              </h3>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="bg-white rounded-lg p-3 text-center">
-                  <DollarSign className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
-                  <div className="font-bold text-emerald-600">{challenge.rewards.money}</div>
-                  <div className="text-xs text-gray-500">Pagamento</div>
-                </div>
-                <div className="bg-white rounded-lg p-3 text-center">
-                  <Award className="w-5 h-5 text-blue-600 mx-auto mb-1" />
-                  <div className="font-bold text-blue-600">{challenge.rewards.points}</div>
-                  <div className="text-xs text-gray-500">Pontos</div>
-                </div>
-              </div>
-              <div className="mt-3 p-3 bg-white rounded-lg">
-                <p className="text-sm text-gray-600">
-                  <strong>Bônus:</strong> {challenge.rewards.badge} • {challenge.rewards.experience}
-                </p>
-              </div>
-            </div>
-
-            {/* Risk Factors */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
-              <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                Pontos de Atenção
-              </h3>
-              <ul className="space-y-2">
-                {challenge.riskFactors.map((risk, index) => (
-                  <li key={index} className="flex items-start gap-3 text-yellow-800">
-                    <Info className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                    {risk}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-              </TabsContent>
-
-              <TabsContent value="checkpoints" className="space-y-6 mt-0">{
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-bold text-gray-800 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-emerald-600" />
-                  Checkpoints da Missão
-                </h3>
-                <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium">
-                  {challenge.checkpoints.filter(c => c.required).length} obrigatórios
-                </span>
-              </div>
-              <p className="text-gray-600 text-sm mb-4">
-                Complete todos os checkpoints obrigatórios para finalizar a missão e receber o pagamento.
-              </p>
-
-              {/* Summary Stats */}
-              <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-xl mb-4">
-                <div className="text-center">
-                  <div className="font-bold text-gray-800">{challenge.checkpoints.length}</div>
-                  <div className="text-xs text-gray-500">Total</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-bold text-red-600">{challenge.checkpoints.filter(c => c.required).length}</div>
-                  <div className="text-xs text-gray-500">Obrigatórios</div>
-                </div>
-                <div className="text-center">
-                  <div className="font-bold text-emerald-600">{challenge.checkpoints.reduce((sum, c) => sum + c.points, 0)}</div>
-                  <div className="text-xs text-gray-500">Pontos</div>
-                </div>
-              </div>
-            </div>
-
-            {challenge.checkpoints.map((checkpoint, index) => (
-              <CheckpointCard key={checkpoint.id} checkpoint={checkpoint} index={index} />
-            ))}
-          </div>
-              </TabsContent>
-
-              <TabsContent value="client" className="space-y-6 mt-0">{
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
-                    {challenge.client.avatar}
-                  </div>
-                  {challenge.client.verified && (
-                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                      <CheckCircle2 className="w-4 h-4 text-white" />
-                    </div>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-gray-800 text-lg">{challenge.client.name}</h3>
-                    {challenge.client.verified && (
-                      <Shield className="w-5 h-5 text-blue-500" />
-                    )}
-                  </div>
-                  <div className="flex items-center gap-3 text-sm mb-2">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold">{challenge.client.rating}</span>
-                      <span className="text-gray-500">({challenge.client.reviews} avaliações)</span>
-                    </div>
-                  </div>
-                  <p className="text-emerald-600 font-medium text-sm">
-                    Responde {challenge.client.responseTime}
+                  <p className="text-gray-600 mb-4">
+                    {showFullDescription ? challenge.fullDescription : challenge.description}
                   </p>
+
+                  <Button 
+                    onClick={() => setShowFullDescription(!showFullDescription)}
+                    variant="link"
+                    className="text-emerald-600 font-medium text-sm p-0 h-auto"
+                  >
+                    {showFullDescription ? 'Ver menos' : 'Ver descrição completa'}
+                    <ChevronRight className={`w-4 h-4 transition-transform ${showFullDescription ? 'rotate-90' : ''}`} />
+                  </Button>
+
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {challenge.tags.map((tag, index) => (
+                      <span key={index} className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Requirements */}
+                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <Package className="w-5 h-5 text-gray-600" />
+                    Requisitos
+                  </h3>
+                  <ul className="space-y-2">
+                    {challenge.requirements.map((req, index) => (
+                      <li key={index} className="flex items-center gap-3 text-gray-600">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+                        {req}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Rewards */}
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-5">
+                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <Medal className="w-5 h-5 text-emerald-600" />
+                    Recompensas
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-white rounded-lg p-3 text-center">
+                      <DollarSign className="w-5 h-5 text-emerald-600 mx-auto mb-1" />
+                      <div className="font-bold text-emerald-600">{challenge.rewards.money}</div>
+                      <div className="text-xs text-gray-500">Pagamento</div>
+                    </div>
+                    <div className="bg-white rounded-lg p-3 text-center">
+                      <Award className="w-5 h-5 text-blue-600 mx-auto mb-1" />
+                      <div className="font-bold text-blue-600">{challenge.rewards.points}</div>
+                      <div className="text-xs text-gray-500">Pontos</div>
+                    </div>
+                  </div>
+                  <div className="mt-3 p-3 bg-white rounded-lg">
+                    <p className="text-sm text-gray-600">
+                      <strong>Bônus:</strong> {challenge.rewards.badge} • {challenge.rewards.experience}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Risk Factors */}
+                <div className="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
+                  <h3 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <AlertTriangle className="w-5 h-5 text-yellow-600" />
+                    Pontos de Atenção
+                  </h3>
+                  <ul className="space-y-2">
+                    {challenge.riskFactors.map((risk, index) => (
+                      <li key={index} className="flex items-start gap-3 text-yellow-800">
+                        <Info className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                        {risk}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
+            </TabsContent>
 
-              <p className="text-gray-600 mb-4">{challenge.client.bio}</p>
+            <TabsContent value="checkpoints" className="space-y-6 mt-0">
+              <div className="space-y-6">
+                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-bold text-gray-800 flex items-center gap-2">
+                      <Target className="w-5 h-5 text-emerald-600" />
+                      Checkpoints da Missão
+                    </h3>
+                    <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium">
+                      {challenge.checkpoints.filter(c => c.required).length} obrigatórios
+                    </span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4">
+                    Complete todos os checkpoints obrigatórios para finalizar a missão e receber o pagamento.
+                  </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <div className="bg-gray-50 rounded-lg p-3 text-center">
-                  <Briefcase className="w-5 h-5 text-gray-600 mx-auto mb-1" />
-                  <div className="font-semibold text-gray-800">{challenge.client.completedMissions}</div>
-                  <div className="text-xs text-gray-500">Missões publicadas</div>
+                  {/* Summary Stats */}
+                  <div className="grid grid-cols-3 gap-3 p-3 bg-gray-50 rounded-xl mb-4">
+                    <div className="text-center">
+                      <div className="font-bold text-gray-800">{challenge.checkpoints.length}</div>
+                      <div className="text-xs text-gray-500">Total</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-bold text-red-600">{challenge.checkpoints.filter(c => c.required).length}</div>
+                      <div className="text-xs text-gray-500">Obrigatórios</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="font-bold text-emerald-600">{challenge.checkpoints.reduce((sum, c) => sum + c.points, 0)}</div>
+                      <div className="text-xs text-gray-500">Pontos</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-3 text-center">
-                  <Calendar className="w-5 h-5 text-gray-600 mx-auto mb-1" />
-                  <div className="font-semibold text-gray-800">{challenge.client.memberSince}</div>
-                  <div className="text-xs text-gray-500">Membro desde</div>
+
+                {challenge.checkpoints.map((checkpoint, index) => (
+                  <CheckpointCard key={checkpoint.id} checkpoint={checkpoint} index={index} />
+                ))}
+              </div>
+            </TabsContent>
+
+            <TabsContent value="client" className="space-y-6 mt-0">
+              <div className="space-y-6">
+                <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="relative">
+                      <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-2xl">
+                        {challenge.client.avatar}
+                      </div>
+                      {challenge.client.verified && (
+                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                          <CheckCircle2 className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <h3 className="font-bold text-gray-800 text-lg">{challenge.client.name}</h3>
+                        {challenge.client.verified && (
+                          <Shield className="w-5 h-5 text-blue-500" />
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 text-sm mb-2">
+                        <div className="flex items-center gap-1">
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <span className="font-semibold">{challenge.client.rating}</span>
+                          <span className="text-gray-500">({challenge.client.reviews} avaliações)</span>
+                        </div>
+                      </div>
+                      <p className="text-emerald-600 font-medium text-sm">
+                        Responde {challenge.client.responseTime}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="text-gray-600 mb-4">{challenge.client.bio}</p>
+
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div className="bg-gray-50 rounded-lg p-3 text-center">
+                      <Briefcase className="w-5 h-5 text-gray-600 mx-auto mb-1" />
+                      <div className="font-semibold text-gray-800">{challenge.client.completedMissions}</div>
+                      <div className="text-xs text-gray-500">Missões publicadas</div>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-3 text-center">
+                      <Calendar className="w-5 h-5 text-gray-600 mx-auto mb-1" />
+                      <div className="font-semibold text-gray-800">{challenge.client.memberSince}</div>
+                      <div className="text-xs text-gray-500">Membro desde</div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <Button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold">
+                      <MessageCircle className="w-5 h-5" />
+                      Conversar
+                    </Button>
+                    <Button variant="secondary" size="icon" className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl">
+                      <Phone className="w-5 h-5" />
+                    </Button>
+                  </div>
                 </div>
               </div>
-
-              <div className="flex gap-3">
-                <Button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white py-3 rounded-xl font-semibold">
-                  <MessageCircle className="w-5 h-5" />
-                  Conversar
-                </Button>
-                <Button variant="secondary" size="icon" className="px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl">
-                  <Phone className="w-5 h-5" />
-                </Button>
-              </div>
-            </div>
-              </TabsContent>
+            </TabsContent>
             </div>
           </Tabs>
         </div>
